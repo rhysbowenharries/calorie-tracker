@@ -11,7 +11,7 @@ Model.prototype.bindEvents = function () {
 };
 
 Model.prototype.getData = function () {
-  this.request.get(url)
+  this.request.get(this.url)
     .then( (allData) => {
       PubSub.publish('Model:all-data', allData)
     })
