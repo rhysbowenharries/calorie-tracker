@@ -16,10 +16,10 @@ Model.prototype.bindEvents = function () {
     .post(newObject, {
       'Content-Type': 'application/json',
       'x-app-id': keys['x-app-id'],
-      'x-app-key': keys['x-app-key'], 
+      'x-app-key': keys['x-app-key'],
       'x-remote-user-id': 0
     })
-    .then( (allData) => {    
+    .then( (allData) => {
 
       const extractedDataObject = this.extractData(allData, date)
       this.request.post(extractedDataObject, {
@@ -28,7 +28,14 @@ Model.prototype.bindEvents = function () {
         .then((allNewData) => {
           PubSub.publish('Model:all-data', allNewData)
         })
-      
+
+    })
+  })
+  PubSub.subscribe('EntryView:delete', (event) => {
+    const deleteItem = event.detail.target.value
+    this.request.delete(deleteItem)
+      .then((allNewData) => {
+        PubSub.publish('Model:all-data', allNewData)
     })
   })
 };
@@ -40,14 +47,6 @@ Model.prototype.bindEvents = function () {
     })
   };
 
-  Model.prototype.delete = function (itemToDelete) {
-    const id = itemToDelete._id
-    this.request
-      .delete(id)
-      .then( (allData) => {
-        PubSub.publish('Model:all-data', allData)
-      })
-  };
 
 
 
