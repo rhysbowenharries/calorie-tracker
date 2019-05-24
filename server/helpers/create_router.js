@@ -16,7 +16,7 @@ const createRouter = function(collection){
     router.get('/:id', (req, res) => {
         const id = req.params.id;
         collection
-            .findOne({_id: id})
+            .findOne( {_id: ObjectID(id)} )
             .then((doc)=> res.json(doc))
             .catch(console.error)
     })
@@ -30,7 +30,21 @@ const createRouter = function(collection){
             .catch(console.error)
     })
 
-    return router 
+    router.delete('/:id', (req,res) => {
+        const id = req.params.id;
+        collection
+            .deleteOne({ _id: ObjectID(id)})
+            .then( () => {
+              collection
+                .find()
+                .toArray()
+                .then((docs) => res.json(docs))
+              })
+            .catch(console.error)
+
+    })
+
+    return router
 }
 
 module.exports = createRouter;
