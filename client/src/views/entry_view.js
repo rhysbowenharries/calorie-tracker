@@ -1,4 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js')
+const UpdateFormView = require('./update_form_view.js');
 
 
 const EntryView = function (element) {
@@ -11,14 +12,17 @@ EntryView.prototype.render = function (data) {
 
   const name = document.createElement('h3')
   name.textContent = `Name: ${data.name}`
+  name.classList.add('nameElement');
   tile.appendChild(name)
 
   const calories = document.createElement('h3')
   calories.textContent = `Calories: ${data.calories}`
+  calories.classList.add('caloriesElement')
   tile.appendChild(calories)
 
   const date = document.createElement('h3')
   date.textContent = `Date: ${data.date}`
+  date.classList.add('dateElement');
   tile.appendChild(date)
 
   const deleteButton = document.createElement('button')
@@ -27,6 +31,17 @@ EntryView.prototype.render = function (data) {
   tile.appendChild(deleteButton)
   deleteButton.addEventListener('click', (event) => {
     PubSub.publish('EntryView:delete', event)
+  })
+
+  const updateButton = document.createElement('button')
+  updateButton.value = data._id
+  updateButton.textContent = 'Update'
+  updateButton.classList.add('update')
+  tile.appendChild(updateButton)
+  updateButton.addEventListener('click', (event) => {
+    const updateForm = new UpdateFormView(tile);
+    updateForm.renderUpdateForm(event);
+    PubSub.publish('EntryView:update', event)
   })
 
 

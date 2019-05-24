@@ -38,6 +38,15 @@ Model.prototype.bindEvents = function () {
         PubSub.publish('Model:all-data', allNewData)
     })
   })
+  // PubSub.subscribe('EntryView:update', (event)=> {
+  //   console.log('before put',event);
+  //   const updateItem = event.detail
+  //   const newObject = this.extractNewData(updateItem)
+  //   this.request.put(updateItem._id, newObject)
+  //     .then( (allData) => {
+  //       PubSub.publish('Model:all-data', allData)
+  //       })
+  // })
 };
 
   Model.prototype.getData = function () {
@@ -60,6 +69,15 @@ Model.prototype.extractData = function(allData, date){
     return newObject;
   })
   return dataArray;
+}
+
+Model.prototype.extractNewData = function(detail){
+  const newObject = [{
+    foodName: detail.query,
+    calories: detail.calories, 
+    date: detail.date
+  }]
+  return newObject;
 }
 
 module.exports = Model
