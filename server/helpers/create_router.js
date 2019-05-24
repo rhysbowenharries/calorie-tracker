@@ -1,4 +1,4 @@
-const express = express();
+const express = require('express')
 const ObjectID = require('mongodb').ObjectID;
 
 const createRouter = function(collection){
@@ -29,4 +29,8 @@ const createRouter = function(collection){
             .then((docs) => res.json(docs))
             .catch(console.error)
     })
+
+    return router 
 }
+
+module.exports = createRouter;

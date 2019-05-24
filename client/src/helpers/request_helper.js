@@ -4,7 +4,7 @@ const RequestHelper = function (url) {
 
 RequestHelper.prototype.get = function () {
   return fetch(this.url)
-    .then((response) => response.json());
+    .then((response) => response.json())
     .catch(console.error)
 };
 
@@ -22,7 +22,7 @@ RequestHelper.prototype.delete = function (id) {
   return fetch(`${this.url}/${id}`, {
     method: 'DELETE'
   })
-    .then((response) => response.json());
+    .then((response) => response.json())
     .catch(console.error)
 };
 

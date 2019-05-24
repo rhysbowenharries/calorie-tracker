@@ -15,7 +15,7 @@ MongoClient.connect('mongodb://localhost:27017')
     const db = client.db('foodTracker')
     const foodTrackerCollection = db.collection('food')
     const foodTrackerRouter = createRouter(foodTrackerCollection)
-    app.use('/api/foodtracker', foodTrackerRouter);
+    app.use('/api/foodTracker', foodTrackerRouter);
   })
   .catch(console.error);
 
