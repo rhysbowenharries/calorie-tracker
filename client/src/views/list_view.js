@@ -13,6 +13,7 @@ ListView.prototype.bindEvents = function () {
 };
 
 ListView.prototype.populate = function (allData) {
+  this.element.innerHTML = ''
   allData.forEach( (data) => {
 
     const tile = new EntryView(this.element)

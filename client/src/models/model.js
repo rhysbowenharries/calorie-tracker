@@ -7,11 +7,17 @@ const Model = function(url) {
 };
 
 Model.prototype.bindEvents = function () {
-
+  PubSub.subscribe('FormView:new-food-object', (event) => {
+    const newObject = event.detail
+    this.request.post(newObject)
+    .then( (allData) => {
+      PubSub.publish('Model:all-data', allData)
+    })
+  })
 };
 
 Model.prototype.getData = function () {
-  this.request.get(this.url)
+  this.request.get()
     .then( (allData) => {
       PubSub.publish('Model:all-data', allData)
     })
