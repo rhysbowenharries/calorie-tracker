@@ -10,9 +10,8 @@ const ListView = function (element) {
 
 ListView.prototype.bindEvents = function () {
   PubSub.subscribe("Model:all-data", (event) => {
-    const allData = event.detail
-    this.populate(allData);
-    this.showCharts(allData);
+    const allData = event.detail    
+    // this.populate(allData)
   })
 };
 
@@ -24,11 +23,6 @@ ListView.prototype.populate = function (allData) {
     tile.render(data)
   })
 };
-
-ListView.prototype.showCharts = function(allData){
-  const chart = document.createElement('<div id="container" style="width:100%; height:400px;"></div>');
-  this.element.appendChild(chart);
-}
 
 
 
