@@ -38,6 +38,10 @@ Model.prototype.bindEvents = function () {
         PubSub.publish('Model:all-data', allNewData)
     })
   })
+  PubSub.subscribe('EntryView:update', (event)=> {
+    const updateItem = event.detail.target.value
+    this.request.put(updateItem, )
+  })
 };
 
   Model.prototype.getData = function () {

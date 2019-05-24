@@ -1,4 +1,5 @@
 const PubSub = require('../helpers/pub_sub.js')
+const UpdateFormView = require('./update_form_view.js')
 
 
 const EntryView = function (element) {
@@ -29,6 +30,14 @@ EntryView.prototype.render = function (data) {
     PubSub.publish('EntryView:delete', event)
   })
 
+  const updateButton = document.createElement('button')
+  updateButton.value = data._id
+  updateButton.textContent = 'Update'
+  updateButton.classList.add('update')
+  tile.appendChild(updateButton)
+  updateButton.addEventListener('click', (event) => {
+    PubSub.publish('EntryView:update', event)
+  })
 
 
 
