@@ -11,7 +11,8 @@ const ListView = function (element) {
 ListView.prototype.bindEvents = function () {
   PubSub.subscribe("Model:all-data", (event) => {
     const allData = event.detail    
-    // this.populate(allData)
+    console.log(allData)
+    this.populate(allData)
   })
 };
 
