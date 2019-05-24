@@ -2,7 +2,7 @@ use foodTracker
 db.dropDatabase();
 
 
-db.foodTracker.insertMany([
+db.food.insertMany([
   {
     name: "burger",
     calories: 1200,
