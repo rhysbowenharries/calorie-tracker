@@ -24,7 +24,7 @@ const createRouter = function(collection){
     router.post('/', (req,res) => {
         const newData = req.body;
         collection
-            .insertOne(newData)
+            .insertMany(newData)
             .then(()=> collection.find().toArray())
             .then((docs) => res.json(docs))
             .catch(console.error)

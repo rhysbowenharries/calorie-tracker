@@ -1,5 +1,8 @@
 const PubSub = require('../helpers/pub_sub.js');
-const EntryView = require('./entry_view.js')
+const EntryView = require('./entry_view.js');
+const Highcharts = require('highcharts');
+require('highcharts/modules/exporting')(Highcharts);
+
 
 const ListView = function (element) {
   this.element = element
@@ -7,7 +10,8 @@ const ListView = function (element) {
 
 ListView.prototype.bindEvents = function () {
   PubSub.subscribe("Model:all-data", (event) => {
-    const allData = event.detail
+    const allData = event.detail    
+    console.log(allData)
     this.populate(allData)
   })
 };
