@@ -33,12 +33,23 @@ Model.prototype.bindEvents = function () {
   })
 };
 
-Model.prototype.getData = function () {
+  Model.prototype.getData = function () {
   this.request.get()
     .then( (allData) => {
-      PubSub.publish('Model:all-data', allData)
+    PubSub.publish('Model:all-data', allData)
     })
-};
+  };
+
+  Model.prototype.delete = function (itemToDelete) {
+    const id = itemToDelete._id
+    this.request
+      .delete(id)
+      .then( (allData) => {
+        PubSub.publish('Model:all-data', allData)
+      })
+  };
+
+
 
 Model.prototype.extractData = function(allData, date){
   const dataArray = allData.foods.map((food) => {
