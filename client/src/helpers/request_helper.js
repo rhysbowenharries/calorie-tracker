@@ -5,6 +5,7 @@ const RequestHelper = function (url) {
 RequestHelper.prototype.get = function () {
   return fetch(this.url)
     .then((response) => response.json());
+    .catch(console.error)
 };
 
 RequestHelper.prototype.post = function(payload) {
@@ -14,6 +15,7 @@ RequestHelper.prototype.post = function(payload) {
     headers: { 'Content-Type': 'application/json'}
   })
   .then(response => response.json())
+  .catch(console.error)
 }
 
 RequestHelper.prototype.delete = function (id) {
@@ -21,6 +23,7 @@ RequestHelper.prototype.delete = function (id) {
     method: 'DELETE'
   })
     .then((response) => response.json());
+    .catch(console.error)
 };
 
 module.exports = RequestHelper;
