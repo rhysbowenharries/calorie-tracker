@@ -10,19 +10,31 @@ EntryView.prototype.render = function (data) {
   const tile = document.createElement('div')
   tile.classList.add('tile')
 
+  const nameLabel = document.createElement('label');
+  nameLabel.textContent = 'Name: ';
   const name = document.createElement('h3')
-  name.textContent = `Name: ${data.name}`
+  name.textContent = data.foodName
   name.classList.add('nameElement');
+  tile.appendChild(nameLabel);
   tile.appendChild(name)
 
+
+
+  const claoriesLabel = document.createElement('label');
+  claoriesLabel.textContent = 'Calories: ';
   const calories = document.createElement('h3')
-  calories.textContent = `Calories: ${data.calories}`
+  calories.textContent = data.calories
   calories.classList.add('caloriesElement')
+  tile.appendChild(claoriesLabel)
   tile.appendChild(calories)
 
+
+  const dateLabel = document.createElement('label');
+  dateLabel.textContent = 'Date: ';
   const date = document.createElement('h3')
-  date.textContent = `Date: ${data.date}`
+  date.textContent = data.date
   date.classList.add('dateElement');
+  tile.appendChild(dateLabel)
   tile.appendChild(date)
 
   const deleteButton = document.createElement('button')

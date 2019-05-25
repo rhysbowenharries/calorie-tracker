@@ -1,11 +1,18 @@
 .tile {
-
+  text-align: center;
+  align-content: center;
   display: flex;
 }
 
 h3 {
 
-  padding: 30px;
+  padding-left: 30px;
+}
+
+label {
+  padding-left: 30px;
+  margin-bottom: 20px;
+margin-top: 20px;
 }
 
 .container {

@@ -4,21 +4,25 @@ const FormView = require('./form_view.js');
 
 const UpdateFormView = function (tile) {
     this.tile = tile;
+    
 }
 
 UpdateFormView.prototype.renderUpdateForm = function (event) {
     const form = document.createElement('form');
+    form.setAttribute('method', "post");
+    form.setAttribute('action', "submit");
 
     console.log('update', event.target.value);
     const objectId = event.target.value;
 
-    const nameLabel = document.createElement('label')
-    nameLabel.textContent = "Name: "
+    const oldName = document.querySelector('h3')
+
+    
     const nameInput = document.createElement('input')
     nameInput.type = "text";
     nameInput.id = "foodName"
-    form.appendChild(nameLabel);
-    form.appendChild(nameInput);
+    oldName.replaceWith(nameInput);
+
     
 
     const caloriesLabel = document.createElement('label')
@@ -45,7 +49,9 @@ UpdateFormView.prototype.renderUpdateForm = function (event) {
 
     this.tile.addEventListener('submit', (event) => {
         event.preventDefault()
-        const newData = event.target
+        const newData = event
+        console.log(event);
+        
         const enteredData = this.getData(newData, objectId)
         PubSub.publish('EntryView:update', enteredData)
         event.target.reset()
@@ -55,10 +61,12 @@ UpdateFormView.prototype.renderUpdateForm = function (event) {
 UpdateFormView.prototype.getData = function (newData, objectId) {
     const foodEntry = {
         _id: objectId,
-        query: newData.foodName.value,
-        calories: newData.calories.value,
-        date: newData.date.value
+        foodName: newData.foodName,
+        calories: newData.calories,
+        date: newData.date
     }
+        console.log(foodEntry);
+        
       return foodEntry
   };
 
