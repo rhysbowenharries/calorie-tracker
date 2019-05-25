@@ -9,8 +9,8 @@ FormView.prototype.bindEvents = function () {
     this.element.addEventListener('submit', (event) => {
       event.preventDefault()
       const newData = event.target
-      const apiCalories = this.getData(newData)
-      PubSub.publish('FormView:new-food-object', apiCalories)
+      const newFoodObject = this.getData(newData)
+      PubSub.publish('FormView:new-food-object', newFoodObject)
       event.target.reset()
     })
 };

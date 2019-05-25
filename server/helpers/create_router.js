@@ -48,7 +48,9 @@ const createRouter = function(collection){
       const id = req.params.id
       const newData = req.body
       collection
-        .updateOne({ _id: ObjectID(id)}, { $set: newData } )
+        .updateOne(
+          { _id: ObjectID(id)}, 
+          { $set: newData } )
         .then( () => {
           collection
             .find()

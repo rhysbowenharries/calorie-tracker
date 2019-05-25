@@ -2,71 +2,67 @@ const PubSub = require('../helpers/pub_sub.js');
 const FormView = require('./form_view.js');
 
 
-const UpdateFormView = function (tile) {
+const UpdateFormView = function (element, tile) {
+    this.element = element;
     this.tile = tile;
-    
 }
 
-UpdateFormView.prototype.renderUpdateForm = function (event) {
+UpdateFormView.prototype.renderUpdateForm = function (data) {
     const form = document.createElement('form');
-    form.setAttribute('method', "post");
-    form.setAttribute('action', "submit");
+    form.classList.add('formTile')
 
-    console.log('update', event.target.value);
-    const objectId = event.target.value;
 
-    const oldName = document.querySelector('h3')
+    console.log('update', data);
+    const objectId = data;
 
-    
+    const oldName = document.querySelector(".nameElement")
     const nameInput = document.createElement('input')
     nameInput.type = "text";
     nameInput.id = "foodName"
+    nameInput.value = data.foodName;
     oldName.replaceWith(nameInput);
 
     
 
-    const caloriesLabel = document.createElement('label')
-    caloriesLabel.textContent = "Calories: "
+    const oldCalories = document.querySelector(".caloriesElement")
     const caloriesInput = document.createElement('input')
-    caloriesInput.type = "number";
+    caloriesInput.type = "float";
     caloriesInput.id = "calories"
-    form.appendChild(caloriesLabel);
-    form.appendChild(caloriesInput);
+    caloriesInput.value = data.calories;
+    oldCalories.replaceWith(caloriesInput)
+   
 
-    const dateLabel = document.createElement('label')
-    dateLabel.textContent = "Date: "
+    const oldDate = document.querySelector('.dateElement')
     const dateInput = document.createElement('input')
     dateInput.type = "date";
     dateInput.id = "date"
-    form.appendChild(dateLabel);
-    form.appendChild(dateInput);
+    dateInput.value = data.date;
+    oldDate.replaceWith(dateInput)
+    
 
     const submitButton = document.createElement('input')
     submitButton.type = "submit"
-    form.appendChild(submitButton);
+    this.tile.appendChild(submitButton);
 
-    this.tile.appendChild(form);
+    this.element.appendChild(form);
+    form.appendChild(this.tile)
 
     this.tile.addEventListener('submit', (event) => {
         event.preventDefault()
-        const newData = event
-        console.log(event);
-        
-        const enteredData = this.getData(newData, objectId)
+        console.log('event', event.target.foodName)
+        const enteredData = this.getData(event.target, objectId)
         PubSub.publish('EntryView:update', enteredData)
-        event.target.reset()
-      })
+    })
+
 }
 
-UpdateFormView.prototype.getData = function (newData, objectId) {
+UpdateFormView.prototype.getData = function (event, objectId) {
     const foodEntry = {
-        _id: objectId,
-        foodName: newData.foodName,
-        calories: newData.calories,
-        date: newData.date
-    }
-        console.log(foodEntry);
-        
+        _id: objectId._id,
+        foodName: event.foodName.value,
+        calories: event.calories.value,
+        date: event.date.value
+    }  
       return foodEntry
   };
 

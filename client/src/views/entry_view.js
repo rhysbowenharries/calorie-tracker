@@ -7,7 +7,7 @@ const EntryView = function (element) {
 }
 
 EntryView.prototype.render = function (data) {
-  const tile = document.createElement('div')
+  const tile = document.createElement('form')
   tile.classList.add('tile')
 
   const nameLabel = document.createElement('label');
@@ -46,14 +46,17 @@ EntryView.prototype.render = function (data) {
   })
 
   const updateButton = document.createElement('button')
-  updateButton.value = data._id
+  updateButton.value = data
+  console.log('buton data',data);
+  
   updateButton.textContent = 'Update'
   updateButton.classList.add('update')
   tile.appendChild(updateButton)
   updateButton.addEventListener('click', (event) => {
-    const updateForm = new UpdateFormView(tile);
-    updateForm.renderUpdateForm(event);
-    PubSub.publish('EntryView:update', event)
+    event.preventDefault();
+    const updateForm = new UpdateFormView(this.element, tile);
+    const newData = updateForm.renderUpdateForm(data);
+    // PubSub.publish('EntryView:update', newData)
   })
 
 
