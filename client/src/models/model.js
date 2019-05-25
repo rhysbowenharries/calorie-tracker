@@ -62,7 +62,7 @@ Model.prototype.bindEvents = function () {
 Model.prototype.extractData = function(allData, date){
   const dataArray = allData.foods.map((food) => {
     const newObject = {
-      name: food.food_name,
+      foodName: food.food_name,
       calories: food.nf_calories,
       date: date
     }
