@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   model.bindEvents();
   model.getData();
 
-  new ChartView 
+  // new ChartView() 
 
 
 })

@@ -1,5 +1,6 @@
 const PubSub = require('../helpers/pub_sub.js');
 const EntryView = require('./entry_view.js');
+const ChartView = require('./chart_view.js')
 const Highcharts = require('highcharts');
 require('highcharts/modules/exporting')(Highcharts);
 
@@ -13,6 +14,8 @@ ListView.prototype.bindEvents = function () {
     const allData = event.detail
     console.log(allData)
     this.populate(allData)
+    new ChartView(allData)
+
   })
 
 };
@@ -20,7 +23,6 @@ ListView.prototype.bindEvents = function () {
 ListView.prototype.populate = function (allData) {
   this.element.innerHTML = ''
   allData.forEach( (data) => {
-
     const tile = new EntryView(this.element)
     tile.render(data)
   })

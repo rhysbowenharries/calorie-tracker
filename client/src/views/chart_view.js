@@ -1,6 +1,9 @@
 
-const ChartView = function () {
 
+const ChartView = function (data) {
+
+  this.data = data
+  console.log("here",this.data);
 
 
   Highcharts.chart('chart-container', {
@@ -37,20 +40,7 @@ const ChartView = function () {
     }]
 
   });
-
-  Highcharts.chart('chart-container2', {
-    chart: {
-      type: 'pie'
-    },
-    title: {
-      text: 'Calorie intake breakdown proper'
-    },
-
-
-
-  });
-
-
 }
+
 
 module.exports = ChartView;
