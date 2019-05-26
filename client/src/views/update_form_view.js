@@ -8,14 +8,14 @@ const UpdateFormView = function (element, tile) {
 }
 
 UpdateFormView.prototype.renderUpdateForm = function (data) {
-    const form = document.createElement('form');
-    form.classList.add('formTile')
+    // const form = document.createElement('form');
+    // form.id = this.tile.id;
 
 
     console.log('update', data);
     const objectId = data;
 
-    const oldName = document.querySelector(".nameElement")
+    const oldName = document.querySelector(`.nameElement${this.tile.id}`)
     const nameInput = document.createElement('input')
     nameInput.type = "text";
     nameInput.id = "foodName"
@@ -24,7 +24,7 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
 
     
 
-    const oldCalories = document.querySelector(".caloriesElement")
+    const oldCalories = document.querySelector(`.caloriesElement${this.tile.id}`)
     const caloriesInput = document.createElement('input')
     caloriesInput.type = "float";
     caloriesInput.id = "calories"
@@ -32,7 +32,7 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     oldCalories.replaceWith(caloriesInput)
    
 
-    const oldDate = document.querySelector('.dateElement')
+    const oldDate = document.querySelector(`.dateElement${this.tile.id}`)
     const dateInput = document.createElement('input')
     dateInput.type = "date";
     dateInput.id = "date"
@@ -44,8 +44,10 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     submitButton.type = "submit"
     this.tile.appendChild(submitButton);
 
-    this.element.appendChild(form);
-    form.appendChild(this.tile)
+    const formID = document.getElementById(`${this.tile.id}`)
+
+    // this.element.appendChild(form);
+    // form.appendChild(this.tile)
 
     this.tile.addEventListener('submit', (event) => {
         event.preventDefault()
@@ -57,6 +59,8 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
 }
 
 UpdateFormView.prototype.getData = function (event, objectId) {
+    console.log(event);
+    
     const foodEntry = {
         _id: objectId._id,
         foodName: event.foodName.value,

@@ -6,15 +6,17 @@ const EntryView = function (element) {
   this.element = element
 }
 
-EntryView.prototype.render = function (data) {
+EntryView.prototype.render = function (data, index) {
   const tile = document.createElement('form')
-  tile.classList.add('tile')
+  tile.id = index
+
+
 
   const nameLabel = document.createElement('label');
   nameLabel.textContent = 'Name: ';
   const name = document.createElement('h3')
   name.textContent = data.foodName
-  name.classList.add('nameElement');
+  name.classList.add(`nameElement${index}`);
   tile.appendChild(nameLabel);
   tile.appendChild(name)
 
@@ -24,7 +26,7 @@ EntryView.prototype.render = function (data) {
   claoriesLabel.textContent = 'Calories: ';
   const calories = document.createElement('h3')
   calories.textContent = data.calories
-  calories.classList.add('caloriesElement')
+  calories.classList.add(`caloriesElement${index}`)
   tile.appendChild(claoriesLabel)
   tile.appendChild(calories)
 
@@ -33,7 +35,7 @@ EntryView.prototype.render = function (data) {
   dateLabel.textContent = 'Date: ';
   const date = document.createElement('h3')
   date.textContent = data.date
-  date.classList.add('dateElement');
+  date.classList.add(`dateElement${index}`);
   tile.appendChild(dateLabel)
   tile.appendChild(date)
 
@@ -47,7 +49,6 @@ EntryView.prototype.render = function (data) {
 
   const updateButton = document.createElement('button')
   updateButton.value = data
-  console.log('buton data',data);
   
   updateButton.textContent = 'Update'
   updateButton.classList.add('update')
@@ -55,8 +56,8 @@ EntryView.prototype.render = function (data) {
   updateButton.addEventListener('click', (event) => {
     event.preventDefault();
     const updateForm = new UpdateFormView(this.element, tile);
-    const newData = updateForm.renderUpdateForm(data);
-    // PubSub.publish('EntryView:update', newData)
+    updateForm.renderUpdateForm(data);
+
   })
 
 
