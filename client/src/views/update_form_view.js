@@ -12,31 +12,11 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     console.log('update', data);
     const objectId = data;
 
-    const oldName = document.querySelector(`.nameElement${this.tile.id}`)
-    const nameInput = document.createElement('input')
-    nameInput.type = "text";
-    nameInput.id = "foodName"
-    nameInput.value = data.foodName;
-    oldName.replaceWith(nameInput);
 
+    this.replaceElement(`.nameElement${this.tile.id}`, data.foodName, "foodName", "text")
+    this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "float")
+    this.replaceElement(`.dateElement${this.tile.id}`, data.date, "date", "date")
     
-
-    const oldCalories = document.querySelector(`.caloriesElement${this.tile.id}`)
-    const caloriesInput = document.createElement('input')
-    caloriesInput.type = "float";
-    caloriesInput.id = "calories"
-    caloriesInput.value = data.calories;
-    oldCalories.replaceWith(caloriesInput)
-   
-
-    const oldDate = document.querySelector(`.dateElement${this.tile.id}`)
-    const dateInput = document.createElement('input')
-    dateInput.type = "date";
-    dateInput.id = "date"
-    dateInput.value = data.date;
-    oldDate.replaceWith(dateInput)
-    
-
     const submitButton = document.createElement('input')
     submitButton.type = "submit"
     this.tile.appendChild(submitButton);
@@ -47,12 +27,9 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
         const enteredData = this.getData(event.target, objectId)
         PubSub.publish('EntryView:update', enteredData)
     })
-
 }
 
 UpdateFormView.prototype.getData = function (event, objectId) {
-    console.log(event);
-    
     const foodEntry = {
         _id: objectId._id,
         foodName: event.foodName.value,
@@ -62,5 +39,13 @@ UpdateFormView.prototype.getData = function (event, objectId) {
       return foodEntry
   };
 
+  UpdateFormView.prototype.replaceElement = function(element, value, id, type){
+    const oldName = document.querySelector(element)
+    const nameInput = document.createElement('input')
+    nameInput.type = type;
+    nameInput.id = id;
+    nameInput.value = value;
+    oldName.replaceWith(nameInput);
+  }
 
 module.exports = UpdateFormView;
