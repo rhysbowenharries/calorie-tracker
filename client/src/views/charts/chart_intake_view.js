@@ -1,12 +1,12 @@
 
 
-const ChartView = function (data) {
+const ChartIntakeView = function (data) {
 
   this.data = data
   console.log("here",this.data);
 
 
-  Highcharts.chart('chart-container', {
+  Highcharts.chart('intake-chart-container', {
     chart: {
       type: 'pie'
     },
@@ -24,4 +24,4 @@ const ChartView = function (data) {
 }
 
 
-module.exports = ChartView;
+module.exports = ChartIntakeView;

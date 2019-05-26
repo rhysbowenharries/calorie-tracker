@@ -1,6 +1,7 @@
 const PubSub = require('../helpers/pub_sub.js');
 const EntryView = require('./entry_view.js');
-const ChartView = require('./chart_view.js')
+const ChartIntakeView = require('./charts/chart_intake_view.js')
+const ChartAllowanceView = require('./charts/chart_allowance_view.js')
 const Highcharts = require('highcharts');
 require('highcharts/modules/exporting')(Highcharts);
 
@@ -13,8 +14,8 @@ ListView.prototype.bindEvents = function () {
   PubSub.subscribe("Model:all-data", (event) => {
     const allData = event.detail
     this.populate(allData)
-    this.makeChart(allData)
-
+    this.makeIntakeChart(allData)
+    this.makeAllowanceChart(allData)
   })
 
 };
@@ -27,16 +28,27 @@ ListView.prototype.populate = function (allData) {
   })
 };
 
-ListView.prototype.makeChart = function (allData) {
-  //take allData from bind events and render chart in chartViews
+ListView.prototype.makeIntakeChart = function (allData) {
+  //take allData from bind events and render chart in ChartIntakeViews
   const chartData = []
   allData.forEach( (data) => {
      chartData.push({name: data.name, y:data.calories})
 
   })
-  new ChartView(chartData)
+  new ChartIntakeView(chartData)
 };
 
+ListView.prototype.makeAllowanceChart = function (allData) {
+  const allowanceData = []
+  let calorieAllowance = 2000
+  let calorieCount = 0
+  allData.forEach( (data) => {
+    calorieCount += data.calories;
+  })
+  allowanceData.push({name:"Calories left", y:calorieAllowance - calorieCount});
+  allowanceData.push({name:"Calories consumed", y:calorieCount})
+  new ChartAllowanceView(allowanceData);
 
+};
 
 module.exports = ListView;
