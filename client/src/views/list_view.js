@@ -6,15 +6,14 @@ require('highcharts/modules/exporting')(Highcharts);
 
 
 const ListView = function (element) {
-  this.element = element
+  this.element = element;
 }
 
 ListView.prototype.bindEvents = function () {
   PubSub.subscribe("Model:all-data", (event) => {
     const allData = event.detail
-    console.log(allData)
     this.populate(allData)
-    new ChartView(allData)
+    this.makeChart(allData)
 
   })
 
@@ -28,8 +27,14 @@ ListView.prototype.populate = function (allData) {
   })
 };
 
-ListView.prototype.makeChart = function () {
+ListView.prototype.makeChart = function (allData) {
   //take allData from bind events and render chart in chartViews
+  const chartData = []
+  allData.forEach( (data) => {
+     chartData.push({name: data.name, y:data.calories})
+
+  })
+  new ChartView(chartData)
 };
 
 
