@@ -8,9 +8,6 @@ const UpdateFormView = function (element, tile) {
 }
 
 UpdateFormView.prototype.renderUpdateForm = function (data) {
-    // const form = document.createElement('form');
-    // form.id = this.tile.id;
-
 
     console.log('update', data);
     const objectId = data;
@@ -43,11 +40,6 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     const submitButton = document.createElement('input')
     submitButton.type = "submit"
     this.tile.appendChild(submitButton);
-
-    const formID = document.getElementById(`${this.tile.id}`)
-
-    // this.element.appendChild(form);
-    // form.appendChild(this.tile)
 
     this.tile.addEventListener('submit', (event) => {
         event.preventDefault()

@@ -10,34 +10,15 @@ EntryView.prototype.render = function (data, index) {
   const tile = document.createElement('form')
   tile.id = index
 
+  this.createLabel('Name: ', tile);
+  this.createOurElement(data.foodName, `nameElement${index}`, tile)
+ 
 
+  this.createLabel('Calories: ', tile);
+  this.createOurElement(data.calories, `caloriesElement${index}`, tile)
 
-  const nameLabel = document.createElement('label');
-  nameLabel.textContent = 'Name: ';
-  const name = document.createElement('h3')
-  name.textContent = data.foodName
-  name.classList.add(`nameElement${index}`);
-  tile.appendChild(nameLabel);
-  tile.appendChild(name)
-
-
-
-  const claoriesLabel = document.createElement('label');
-  claoriesLabel.textContent = 'Calories: ';
-  const calories = document.createElement('h3')
-  calories.textContent = data.calories
-  calories.classList.add(`caloriesElement${index}`)
-  tile.appendChild(claoriesLabel)
-  tile.appendChild(calories)
-
-
-  const dateLabel = document.createElement('label');
-  dateLabel.textContent = 'Date: ';
-  const date = document.createElement('h3')
-  date.textContent = data.date
-  date.classList.add(`dateElement${index}`);
-  tile.appendChild(dateLabel)
-  tile.appendChild(date)
+  this.createLabel('Date: ', tile)
+  this.createOurElement(data.date, `dateElement${index}`, tile)
 
   const deleteButton = document.createElement('button')
   deleteButton.value = data._id
@@ -48,8 +29,7 @@ EntryView.prototype.render = function (data, index) {
   })
 
   const updateButton = document.createElement('button')
-  updateButton.value = data
-  
+  updateButton.value = data._id
   updateButton.textContent = 'Update'
   updateButton.classList.add('update')
   tile.appendChild(updateButton)
@@ -59,13 +39,7 @@ EntryView.prototype.render = function (data, index) {
     updateForm.renderUpdateForm(data);
 
   })
-
-
-
-
   this.element.appendChild(tile)
-
-
 }
 
 EntryView.prototype.makeDeleteButton = function (deleteButton) {
@@ -73,5 +47,17 @@ EntryView.prototype.makeDeleteButton = function (deleteButton) {
   deleteButton.classList.add('delete')
 }
 
+EntryView.prototype.createLabel = function(name, tile){
+  const label = document.createElement('label');
+  label.textContent = name;
+  tile.appendChild(label);
+}
+
+EntryView.prototype.createOurElement = function(input, classList, tile){
+  const name = document.createElement('h3')
+  name.textContent = input
+  name.classList.add(classList);
+  tile.appendChild(name)
+}
 
 module.exports = EntryView;
