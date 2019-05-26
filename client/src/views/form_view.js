@@ -4,7 +4,6 @@ const FormView = function (element) {
   this.element = element
 }
 
-
 FormView.prototype.bindEvents = function () {
     this.element.addEventListener('submit', (event) => {
       event.preventDefault()
@@ -16,16 +15,12 @@ FormView.prototype.bindEvents = function () {
 };
 
 FormView.prototype.getData = function (newData) {
-  console.log('FormView', newData);
-  
   const foodEntry = {
     query: newData.foodName.value,
     calories: newData.calories.value,
     date: newData.date.value
   }
-
     return foodEntry
 };
-
 
 module.exports = FormView;

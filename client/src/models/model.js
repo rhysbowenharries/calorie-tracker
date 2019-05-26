@@ -11,7 +11,6 @@ Model.prototype.bindEvents = function () {
   PubSub.subscribe('FormView:new-food-object', (event) => {
     const date = event.detail.date
     const newObject = {"query": event.detail.query}
-    console.log(newObject)
     const nutritionAPI = new RequestHelper('https://trackapi.nutritionix.com/v2/natural/nutrients')
     nutritionAPI.post(newObject, {
       'Content-Type': 'application/json',
@@ -39,8 +38,6 @@ Model.prototype.bindEvents = function () {
   })
   PubSub.subscribe('EntryView:update', (event)=> {
     const updateItem = event.detail
-    console.log('update from model', updateItem);
-    
     const newObject = this.extractNewData(updateItem)
     this.request.put(updateItem._id, newObject)
       .then( (allData) => {
@@ -49,15 +46,12 @@ Model.prototype.bindEvents = function () {
   })
 };
 
-  Model.prototype.getData = function () {
-  this.request.get()
-    .then( (allData) => {
-    PubSub.publish('Model:all-data', allData)
-    })
-  };
-
-
-
+Model.prototype.getData = function () {
+this.request.get()
+  .then( (allData) => {
+  PubSub.publish('Model:all-data', allData)
+  })
+};
 
 Model.prototype.extractData = function(allData, date){
   const dataArray = allData.foods.map((food) => {

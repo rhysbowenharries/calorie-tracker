@@ -14,20 +14,14 @@ ListView.prototype.bindEvents = function () {
     console.log(allData)
     this.populate(allData)
   })
-  
 };
 
 ListView.prototype.populate = function (allData) {
   this.element.innerHTML = ''
   allData.forEach( (data, index) => {
-
     const tile = new EntryView(this.element)
     tile.render(data, index)
   })
 };
-
-
-
-
 
 module.exports = ListView;

@@ -1,6 +1,4 @@
 const PubSub = require('../helpers/pub_sub.js');
-const FormView = require('./form_view.js');
-
 
 const UpdateFormView = function (element, tile) {
     this.element = element;
@@ -8,10 +6,7 @@ const UpdateFormView = function (element, tile) {
 }
 
 UpdateFormView.prototype.renderUpdateForm = function (data) {
-
-    console.log('update', data);
     const objectId = data;
-
 
     this.replaceElement(`.nameElement${this.tile.id}`, data.foodName, "foodName", "text")
     this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "float")
@@ -23,7 +18,6 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
 
     this.tile.addEventListener('submit', (event) => {
         event.preventDefault()
-        console.log('event', event.target.foodName)
         const enteredData = this.getData(event.target, objectId)
         PubSub.publish('EntryView:update', enteredData)
     })

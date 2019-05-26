@@ -1,7 +1,6 @@
 const PubSub = require('../helpers/pub_sub.js')
 const UpdateFormView = require('./update_form_view.js');
 
-
 const EntryView = function (element) {
   this.element = element
 }
@@ -12,7 +11,6 @@ EntryView.prototype.render = function (data, index) {
 
   this.createLabel('Name: ', tile);
   this.createOurElement(data.foodName, `nameElement${index}`, tile)
- 
 
   this.createLabel('Calories: ', tile);
   this.createOurElement(data.calories, `caloriesElement${index}`, tile)
@@ -37,7 +35,6 @@ EntryView.prototype.render = function (data, index) {
     event.preventDefault();
     const updateForm = new UpdateFormView(this.element, tile);
     updateForm.renderUpdateForm(data);
-
   })
   this.element.appendChild(tile)
 }
