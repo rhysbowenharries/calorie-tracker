@@ -1,6 +1,7 @@
 const Model = require('./models/model.js');
 const ListView = require('./views/list_view.js');
-const FormView = require('./views/form_view.js')
+const FormView = require('./views/form_view.js');
+const ChartView = require('./views/chart_view.js')
 
 document.addEventListener("DOMContentLoaded", () => {
   const list = document.querySelector('div#food-data')
@@ -15,4 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const model = new Model(url);
   model.bindEvents();
   model.getData();
+
+  new ChartView 
+
+
 })

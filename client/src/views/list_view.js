@@ -14,7 +14,7 @@ ListView.prototype.bindEvents = function () {
     console.log(allData)
     this.populate(allData)
   })
-  
+
 };
 
 ListView.prototype.populate = function (allData) {
@@ -26,7 +26,9 @@ ListView.prototype.populate = function (allData) {
   })
 };
 
-
+ListView.prototype.makeChart = function () {
+  //take allData from bind events and render chart in chartViews
+};
 
 
 
