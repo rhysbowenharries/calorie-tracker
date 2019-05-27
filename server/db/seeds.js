@@ -15,3 +15,9 @@ db.food.insertMany([
   }
     
 ])
+
+db.target.insertOne(
+  {
+    goal: 2000
+  }
+)

@@ -2,12 +2,12 @@ const RequestHelper = require('../helpers/request_helper.js');
 const PubSub = require('../helpers/pub_sub.js');
 const keys = require('../helpers/keys.js');
 
-const Model = function(url) {
+const FoodModel = function(url) {
   this.url = url;
   this.request = new RequestHelper(this.url);
 };
 
-Model.prototype.bindEvents = function () {
+FoodModel.prototype.bindEvents = function () {
   PubSub.subscribe('FormView:new-food-object', (event) => {
     const date = event.detail.date
     const newObject = {"query": event.detail.query}
@@ -25,7 +25,7 @@ Model.prototype.bindEvents = function () {
         'Content-Type': 'application/json'
       })
         .then((allNewData) => {
-          PubSub.publish('Model:all-data', allNewData)
+          PubSub.publish('FoodModel:all-data', allNewData)
         })
 
     })
@@ -34,7 +34,7 @@ Model.prototype.bindEvents = function () {
     const deleteItem = event.detail.target.value
     this.request.delete(deleteItem)
       .then((allNewData) => {
-        PubSub.publish('Model:all-data', allNewData)
+        PubSub.publish('FoodModel:all-data', allNewData)
     })
   })
   PubSub.subscribe('EntryView:update', (event)=> {
@@ -42,19 +42,19 @@ Model.prototype.bindEvents = function () {
     const newObject = this.extractUpdatedData(updateItem)
     this.request.put(updateItem._id, newObject)
       .then( (allData) => {
-        PubSub.publish('Model:all-data', allData)
+        PubSub.publish('FoodModel:all-data', allData)
         })
   })
 };
 
-Model.prototype.getData = function () {
+FoodModel.prototype.getData = function () {
 this.request.get()
   .then( (allData) => {
-  PubSub.publish('Model:all-data', allData)
+  PubSub.publish('FoodModel:all-data', allData)
   })
 };
 
-Model.prototype.extractData = function(allData, date){
+FoodModel.prototype.extractData = function(allData, date){
   const dataArray = allData.foods.map((food) => {
     const newObject = {
       foodName: food.food_name,
@@ -66,13 +66,13 @@ Model.prototype.extractData = function(allData, date){
   return dataArray;
 }
 
-Model.prototype.extractUpdatedData = function(detail){
+FoodModel.prototype.extractUpdatedData = function(detail){
     const newObject = {
       foodName: detail.foodName,
-      calories: detail.calories,
+      calories: detail.calories, 
       date: detail.date
     }
     return newObject;
 }
 
-module.exports = Model
+module.exports = FoodModel

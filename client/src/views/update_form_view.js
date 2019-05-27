@@ -9,7 +9,7 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     const objectId = data;
 
     this.replaceElement(`.nameElement${this.tile.id}`, data.foodName, "foodName", "text")
-    this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "float")
+    this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "number")
     this.replaceElement(`.dateElement${this.tile.id}`, data.date, "date", "date")
     
     const submitButton = document.createElement('input')
