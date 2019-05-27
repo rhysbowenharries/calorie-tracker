@@ -4,7 +4,7 @@
 
 const DateRangeView = function (data) {
   this.data = data
-
+  console.log('Hot date',this.data);
 }
 
 

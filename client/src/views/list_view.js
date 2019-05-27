@@ -2,7 +2,6 @@ const PubSub = require('../helpers/pub_sub.js');
 const EntryView = require('./entry_view.js');
 const ChartIntakeView = require('./charts/chart_intake_view.js')
 const ChartAllowanceView = require('./charts/chart_allowance_view.js')
-const DateRangeView = require('./date_range_view.js')
 const Highcharts = require('highcharts');
 require('highcharts/modules/exporting')(Highcharts);
 
@@ -21,7 +20,6 @@ ListView.prototype.bindEvents = function () {
     this.populate(allData)
     this.makeIntakeChart(allData)
     this.makeAllowanceChart(allData)
-    new DateRangeView(allData)
   })
 };
 

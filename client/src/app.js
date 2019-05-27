@@ -3,6 +3,7 @@ const GoalModel = require('./models/goal_model.js');
 const ListView = require('./views/list_view.js');
 const FormView = require('./views/form_view.js');
 const GoalView = require('./views/goal_view.js')
+const NavBarView = require('./views/nav_bar_view.js')
 
 document.addEventListener("DOMContentLoaded", () => {
   let today = new Date().toISOString().substr(0, 10);
@@ -19,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector('form.input-form')
   const formView = new FormView(form)
   formView.bindEvents()
-  
+
   const goalUrl = 'http://localhost:3000/api/target'
   const goal_model = new GoalModel(goalUrl);
   goal_model.bindEvents();
@@ -30,8 +31,8 @@ document.addEventListener("DOMContentLoaded", () => {
   model.bindEvents();
   model.getData();
 
-
-
+  const navBarView = new NavBarView('nav#nav-bar')
+  navBarView.bindEvents()
 
 
 })
