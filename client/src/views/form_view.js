@@ -11,6 +11,8 @@ FormView.prototype.bindEvents = function () {
       const newFoodObject = this.getData(newData)
       PubSub.publish('FormView:new-food-object', newFoodObject)
       event.target.reset()
+      let today = new Date().toISOString().substr(0, 10);
+      document.querySelector("#date").value = today;
     })
 };
 

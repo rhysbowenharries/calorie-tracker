@@ -19,6 +19,7 @@ Model.prototype.bindEvents = function () {
       'x-remote-user-id': 0
     })
     .then( (allData) => {
+      console.log(allData);
       const extractedDataObject = this.extractData(allData, date)
       this.request.post(extractedDataObject, {
         'Content-Type': 'application/json'
@@ -38,7 +39,7 @@ Model.prototype.bindEvents = function () {
   })
   PubSub.subscribe('EntryView:update', (event)=> {
     const updateItem = event.detail
-    const newObject = this.extractNewData(updateItem)
+    const newObject = this.extractUpdatedData(updateItem)
     this.request.put(updateItem._id, newObject)
       .then( (allData) => {
         PubSub.publish('Model:all-data', allData)
@@ -65,7 +66,7 @@ Model.prototype.extractData = function(allData, date){
   return dataArray;
 }
 
-Model.prototype.extractNewData = function(detail){
+Model.prototype.extractUpdatedData = function(detail){
     const newObject = {
       foodName: detail.foodName,
       calories: detail.calories, 
