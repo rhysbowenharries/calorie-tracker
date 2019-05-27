@@ -8,14 +8,19 @@ require('highcharts/modules/exporting')(Highcharts);
 
 const ListView = function (element) {
   this.element = element;
+  this.calorieAllowance = 0;
 }
 
 ListView.prototype.bindEvents = function () {
-  PubSub.subscribe("Model:all-data", (event) => {
+  PubSub.subscribe('GoalModel:goal', (event)=> {
+    this.calorieAllowance = event.detail[0].goal
+  })
+  PubSub.subscribe("FoodModel:all-data", (event) => {
     const allData = event.detail
     this.populate(allData)
     this.makeIntakeChart(allData)
     this.makeAllowanceChart(allData)
+    
   })
 };
 
@@ -39,12 +44,11 @@ ListView.prototype.makeIntakeChart = function (allData) {
 
 ListView.prototype.makeAllowanceChart = function (allData) {
   const allowanceData = []
-  let calorieAllowance = 2000
   let calorieCount = 0
   allData.forEach( (data) => {
     calorieCount += data.calories;
   })
-  allowanceData.push({name:"Calories left", y:calorieAllowance - calorieCount});
+  allowanceData.push({name:"Calories left", y:this.calorieAllowance - calorieCount});
   allowanceData.push({name:"Calories consumed", y:calorieCount})
   new ChartAllowanceView(allowanceData);
 

@@ -13,9 +13,12 @@ app.use(parser.json());
 MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
     const db = client.db('foodTracker')
-    const foodTrackerCollection = db.collection('food')
-    const foodTrackerRouter = createRouter(foodTrackerCollection)
-    app.use('/api/foodTracker', foodTrackerRouter);
+    const foodCollection = db.collection('food')
+    const goalCollection = db.collection('target')
+    const foodRouter = createRouter(foodCollection)
+    const goalRouter = createRouter(goalCollection)
+    app.use('/api/food', foodRouter);
+    app.use('/api/target', goalRouter);
   })
   .catch(console.error);
 
