@@ -4,12 +4,12 @@ db.dropDatabase();
 
 db.food.insertMany([
   {
-    name: "burger",
+    foodName: "burger",
     calories: 1200,
     date: "23/05/2019"
   },
   {
-    name: "cesar salad",
+    foodName: "cesar salad",
     calories: 700,
     date: "23/05/2019"
   }

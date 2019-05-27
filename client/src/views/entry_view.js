@@ -1,25 +1,22 @@
 const PubSub = require('../helpers/pub_sub.js')
-
+const UpdateFormView = require('./update_form_view.js');
 
 const EntryView = function (element) {
   this.element = element
 }
 
-EntryView.prototype.render = function (data) {
-  const tile = document.createElement('div')
-  tile.classList.add('tile')
+EntryView.prototype.render = function (data, index) {
+  const tile = document.createElement('form')
+  tile.id = index
 
-  const name = document.createElement('h3')
-  name.textContent = `Name: ${data.name}`
-  tile.appendChild(name)
+  this.createLabel('Name: ', tile);
+  this.createOurElement(data.foodName, `nameElement${index}`, tile)
 
-  const calories = document.createElement('h3')
-  calories.textContent = `Calories: ${data.calories}`
-  tile.appendChild(calories)
+  this.createLabel('Calories: ', tile);
+  this.createOurElement(data.calories, `caloriesElement${index}`, tile)
 
-  const date = document.createElement('h3')
-  date.textContent = `Date: ${data.date}`
-  tile.appendChild(date)
+  this.createLabel('Date: ', tile)
+  this.createOurElement(data.date, `dateElement${index}`, tile)
 
   const deleteButton = document.createElement('button')
   deleteButton.value = data._id
@@ -29,12 +26,17 @@ EntryView.prototype.render = function (data) {
     PubSub.publish('EntryView:delete', event)
   })
 
-
-
-
+  const updateButton = document.createElement('button')
+  updateButton.value = data._id
+  updateButton.textContent = 'Update'
+  updateButton.classList.add('update')
+  tile.appendChild(updateButton)
+  updateButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const updateForm = new UpdateFormView(this.element, tile);
+    updateForm.renderUpdateForm(data);
+  })
   this.element.appendChild(tile)
-
-
 }
 
 EntryView.prototype.makeDeleteButton = function (deleteButton) {
@@ -42,5 +44,17 @@ EntryView.prototype.makeDeleteButton = function (deleteButton) {
   deleteButton.classList.add('delete')
 }
 
+EntryView.prototype.createLabel = function(name, tile){
+  const label = document.createElement('label');
+  label.textContent = name;
+  tile.appendChild(label);
+}
+
+EntryView.prototype.createOurElement = function(input, classList, tile){
+  const name = document.createElement('h3')
+  name.textContent = input
+  name.classList.add(classList);
+  tile.appendChild(name)
+}
 
 module.exports = EntryView;

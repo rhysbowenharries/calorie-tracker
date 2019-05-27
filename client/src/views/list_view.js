@@ -17,14 +17,13 @@ ListView.prototype.bindEvents = function () {
     this.makeIntakeChart(allData)
     this.makeAllowanceChart(allData)
   })
-
 };
 
 ListView.prototype.populate = function (allData) {
   this.element.innerHTML = ''
-  allData.forEach( (data) => {
+  allData.forEach( (data, index) => {
     const tile = new EntryView(this.element)
-    tile.render(data)
+    tile.render(data, index)
   })
 };
 
