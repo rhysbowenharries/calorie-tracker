@@ -20,7 +20,7 @@ ListView.prototype.bindEvents = function () {
     this.populate(allData)
     this.makeIntakeChart(allData)
     this.makeAllowanceChart(allData)
-
+    
   })
 };
 
