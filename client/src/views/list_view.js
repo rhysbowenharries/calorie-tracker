@@ -16,6 +16,7 @@ ListView.prototype.bindEvents = function () {
     this.populate(allData)
     this.makeIntakeChart(allData)
     this.makeAllowanceChart(allData)
+    console.log("all data",allData);
   })
 };
 
@@ -31,7 +32,7 @@ ListView.prototype.makeIntakeChart = function (allData) {
   //take allData from bind events and render chart in ChartIntakeViews
   const chartData = []
   allData.forEach( (data) => {
-     chartData.push({name: data.name, y:data.calories})
+     chartData.push({name: data.foodName, y:data.calories})
 
   })
   new ChartIntakeView(chartData)
