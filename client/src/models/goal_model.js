@@ -9,7 +9,7 @@ const GoalModel = function(url){
 GoalModel.prototype.bindEvents = function(){
     PubSub.subscribe('GoalView:goalset', (event) => {
         const updateGoal = event.detail
-        console.log(updateGoal);
+        console.log('updateGoal',updateGoal);
         const goalObject = this.createGoalObject(updateGoal);
         this.request.put(updateGoal._id, goalObject)
             .then((goal) => {
