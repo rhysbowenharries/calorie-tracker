@@ -12,14 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const goalView = new GoalView(goalForm)
   goalView.bindEvents();
 
-  const list = document.querySelector('div#food-data')
+  const list = document.querySelector('table#food-data')
   const listView = new ListView(list)
   listView.bindEvents()
 
   const form = document.querySelector('form.input-form')
   const formView = new FormView(form)
   formView.bindEvents()
-  
+
   const goalUrl = 'http://localhost:3000/api/target'
   const goal_model = new GoalModel(goalUrl);
   goal_model.bindEvents();

@@ -31,6 +31,10 @@ label {
   padding: 10px;
 }
 
+#goalSet{
+  text-align: center;
+}
+
 #food-data {
   width: 50%;
   float: left;
@@ -63,3 +67,15 @@ label {
   margin: 5px;
   text-align: center;
 }
+
+th {
+  text-align: center;
+  width: 100px;
+}
+
+tr {
+  text-align: center;
+  width: 100px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
