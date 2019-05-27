@@ -54,6 +54,7 @@ EntryView.prototype.createOurElement = function(input, classList, tile){
   const name = document.createElement('h3')
   name.textContent = input
   name.classList.add(classList);
+  name.style.display = "inline"
   tile.appendChild(name)
 }
 
