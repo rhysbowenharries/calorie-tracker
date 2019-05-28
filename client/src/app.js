@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const goalView = new GoalView(goalForm)
   goalView.bindEvents();
 
-  const list = document.querySelector('div#food-data')
+  const list = document.querySelector('table#food-data')
   const listView = new ListView(list)
   listView.bindEvents()
 

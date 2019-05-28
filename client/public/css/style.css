@@ -31,11 +31,16 @@ label {
   padding: 10px;
 }
 
+#goalSet{
+  text-align: center;
+}
+
 #food-data {
   width: 50%;
   float: left;
   overflow: scroll;
   height: 500px;
+  border-collapse: collapse;
 }
 
 
@@ -64,6 +69,25 @@ label {
   text-align: center;
 }
 
+th {
+  text-align: center;
+  width: 100px;
+}
+
+tr {
+  text-align: center;
+  width: 100px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+td {
+  text-transform: capitalize;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -87,4 +111,9 @@ li a {
 
 li a:hover {
   background-color: #111;
+}
+
+td .updateForm {
+  column-span: 5;
+  column-width: 500px;
 }
