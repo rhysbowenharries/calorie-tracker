@@ -1,7 +1,13 @@
 body {
-  background-color: rgb(117, 138, 247);
-  width: 100%;
+  background: url('/images/asparagus.jpg');
+  /* background-color: rgb(117, 138, 247); */
+  background-size: 100%;
+  background-repeat: repeat;
+  color: white;
+}
 
+header{
+  height: 8em;
 }
 
 nav {
@@ -10,6 +16,21 @@ nav {
 
 h1 {
   text-align: center;
+  font-size: 3em;
+  /* font-style: oblique; */
+  font-family: Apple Chancery, cursive;
+}
+
+img-left{
+  float: left;
+  border-radius: 50%;
+  /* width: 200px; */
+}
+
+img-right{
+  float: right;
+  border-radius: 50%;
+  opacity: 0.5;
 }
 
 .input-form{
@@ -21,10 +42,10 @@ h1 {
 }
 
 
-.container {
+#container {
   width: 100%;
-  height: 400px;
-  color: blue;
+  background: rgba(0, 0, 0, 0.2);
+  margin: auto;
 }
 
 label {
@@ -80,7 +101,7 @@ tr {
 }
 
 tr:nth-child(even) {
-  background-color: #f2f2f2;
+  background-color: rgb(24, 163, 17);
   border-radius: 5px;
 }
 

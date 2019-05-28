@@ -6,6 +6,7 @@ const ChartIntakeView = function (data) {
 
   Highcharts.chart('intake-chart-container', {
     chart: {
+      backgroundColor: '#18A311',
       type: 'pie'
     },
     title: {
