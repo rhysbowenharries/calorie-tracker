@@ -72,19 +72,20 @@ label {
   height: 500px;
 }
 
-.delete {
+button {
   width: 50px;
   height: 30px;
   background-color: red;
   border-radius: 5px;
   margin: 5px;
+  margin-top: 15px;
   text-align: center;
 }
 
-.update {
+.submit {
   width: 50px;
   height: 30px;
-  background-color: rgb(119, 89, 190);
+  background-color: red;
   border-radius: 5px;
   margin: 5px;
   text-align: center;
@@ -115,10 +116,12 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #8218ce;
+  border-radius: 10px;
 }
 
 li {
   float: left;
+  border-radius: 10px;
 }
 
 li a {
@@ -138,3 +141,9 @@ td .updateForm {
   column-span: 5;
   column-width: 500px;
 }
+
+form, nav {
+  border: 2px solid black;
+  border-radius: 10px;
+}
+
