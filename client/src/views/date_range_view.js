@@ -78,6 +78,19 @@ DateRangeView.prototype.weeklyRender = function () {
   this.makeIntakeChart(weeklyFood)
 }
 
+DateRangeView.prototype.monthlyRender = function (month) {
+  monthlyFood = []
+  this.data.forEach( (data) => {
+    const monthOfFood = new Date(data.date)
+    const monthIndex = monthOfFood.getMonth();
+    if (monthIndex == month) {
+      monthlyFood.push(data)
+    }
+  })
+  this.populate(monthlyFood)
+  this.makeIntakeChart(monthlyFood)
+}
+
 DateRangeView.prototype.populate = function (foodInDateRange) {
   this.element.innerHTML = ''
   foodInDateRange.forEach( (data, index) => {

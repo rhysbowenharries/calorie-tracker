@@ -35,6 +35,13 @@ NavBarView.prototype.bindEvents = function () {
     listView.populate(this.data)
   })
 
+  const monthly = document.querySelector('#monthly')
+  monthly.addEventListener('change', (event) => {
+    const container = document.querySelector('#food-data')
+    const dateRangeView = new DateRangeView(container , this.data)
+    console.log(event.target.value)
+    dateRangeView.monthlyRender(event.target.value)
+  })
 
 };
 
