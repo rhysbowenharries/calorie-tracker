@@ -4,19 +4,19 @@ const ListView = require('./views/list_view.js');
 const FormView = require('./views/form_view.js');
 const GoalView = require('./views/goal_view.js')
 const NavBarView = require('./views/nav_bar_view.js')
-const DateRangeView = require('./views/date_range_view.js')
+const DateRangeModel = require('./models/date_range_model.js')
 
 
 document.addEventListener("DOMContentLoaded", () => {
   let today = new Date().toISOString().substr(0, 10);
   document.querySelector("#date").value = today;
-  
+
   const navBarView = new NavBarView('nav#nav-bar')
   navBarView.bindEvents()
 
-  const dateRangeView = new DateRangeView
-  dateRangeView.bindEvents();
-  
+  const dateRangeModel = new DateRangeModel()
+  dateRangeModel.bindEvents();
+
   const goalForm = document.querySelector('form#goalSet')
   const goalView = new GoalView(goalForm)
   goalView.bindEvents();
