@@ -23,8 +23,8 @@ DateRangeView.prototype.bindEvents =  function() {
 }
 
 DateRangeView.prototype.dailyRender = function () {
+
   let today = new Date().toISOString().substr(0, 10);
-  console.log(today);
 
   const todayFood = []
   this.data.forEach( (data) => {
@@ -35,10 +35,48 @@ DateRangeView.prototype.dailyRender = function () {
   this.populate(todayFood)
   this.makeIntakeChart(todayFood)
   // this.makeAllowanceChart(todayFood)
-  
-  
+
+
   // console.log('new array',newArray)
 };
+
+DateRangeView.prototype.weeklyRender = function () {
+  function formatDate(date){
+
+   var dd = date.getDate();
+   var mm = date.getMonth()+1;
+   var yyyy = date.getFullYear();
+   if (dd<10) {dd='0' + dd}
+   if (mm<10) {mm='0' + mm}
+   date = yyyy+'-'+mm+'-'+ dd;
+   return date
+}
+  function Last7Days () {
+   const result = [];
+   for (let i=0; i<7; i++) {
+       let date = new Date();
+       date.setDate(date.getDate() - i);
+       result.push( formatDate(date) )
+   }
+   return(result);
+}
+
+  const last7Days = Last7Days()
+  console.log(last7Days)
+
+  const weeklyFood = []
+
+  last7Days.forEach( (day) => {
+    this.data.forEach( (food) => {
+      if (food.date === day) {
+        weeklyFood.push(food)
+      }
+    })
+    })
+  console.log(weeklyFood)
+  this.populate(weeklyFood)
+  this.makeIntakeChart(weeklyFood)
+}
 
 DateRangeView.prototype.populate = function (foodInDateRange) {
   this.element.innerHTML = ''

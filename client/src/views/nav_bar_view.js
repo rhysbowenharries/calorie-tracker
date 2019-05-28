@@ -13,12 +13,19 @@ NavBarView.prototype.bindEvents = function () {
     this.data = event.detail
     console.log('all-data',this.data)
   })
-  
+
   const daily = document.querySelector('a#daily')
   daily.addEventListener('click', (event) => {
     const container = document.querySelector('#food-data')
     const dateRangeView = new DateRangeView(container , this.data)
     dateRangeView.dailyRender()
+  })
+
+  const weekly = document.querySelector('a#weekly')
+  weekly.addEventListener('click', (event) => {
+    const container = document.querySelector('#food-data')
+    const dateRangeView = new DateRangeView(container , this.data)
+    dateRangeView.weeklyRender()
   })
 
   const all = document.querySelector('a#all')
