@@ -29,6 +29,8 @@ ListView.prototype.populate = function (allData) {
     const tile = new EntryView(this.element)
     tile.render(data, index)
   })
+  this.makeIntakeChart(allData)
+
 };
 
 ListView.prototype.makeIntakeChart = function (allData) {
