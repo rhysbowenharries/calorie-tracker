@@ -3,6 +3,7 @@ const EntryView = require('./entry_view.js');
 const ChartIntakeView = require('./charts/chart_intake_view.js')
 const ChartAllowanceView = require('./charts/chart_allowance_view.js')
 const Highcharts = require('highcharts');
+const math = require('mathjs')
 require('highcharts/modules/exporting')(Highcharts);
 
 
@@ -53,7 +54,7 @@ ListView.prototype.makeIntakeChart = function (allData) {
   //take allData from bind events and render chart in ChartIntakeViews
   const chartData = []
   allData.forEach( (data) => {
-     chartData.push({name: data.foodName, y:parseInt(data.calories)})
+    chartData.push({name: data.foodName, y:parseInt(data.calories)})
 
 
   })
@@ -66,10 +67,22 @@ ListView.prototype.makeAllowanceChart = function (allData) {
   allData.forEach( (data) => {
     calorieCount += data.calories;
   })
-  allowanceData.push({name:"Calories left", y:this.calorieAllowance - calorieCount});
-  allowanceData.push({name:"Calories consumed", y:calorieCount})
-  new ChartAllowanceView(allowanceData);
 
+  let caloriesLeft = (this.calorieAllowance - calorieCount);
+  Math.round(caloriesLeft);
+  console.log(caloriesLeft);
+  if(caloriesLeft < 0){
+    console.log("You fat bastard!");
+    caloriesLeft = Math.round(caloriesLeft *= -1);
+    allowanceData.push({name:"Calories left", y:this.calorieAllowance - calorieCount});
+    allowanceData.push({name:`You have overeaten by ${caloriesLeft} calories`, y:calorieCount})
+    new ChartAllowanceView(allowanceData);
+
+  } else {
+    allowanceData.push({name:"Calories left", y:this.calorieAllowance - calorieCount});
+    allowanceData.push({name:"Calories consumed", y:calorieCount})
+    new ChartAllowanceView(allowanceData);
+  }
 };
 
 module.exports = ListView;

@@ -11,7 +11,7 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     this.replaceElement(`.nameElement${this.tile.id}`, data.foodName, "foodName", "text")
     this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "number")
     this.replaceElement(`.dateElement${this.tile.id}`, data.date, "date", "date")
-    
+
     const submitButton = document.createElement('input')
     submitButton.type = "submit"
     this.tile.appendChild(submitButton);
@@ -29,7 +29,7 @@ UpdateFormView.prototype.getData = function (event, objectId) {
         foodName: event.foodName.value,
         calories: event.calories.value,
         date: event.date.value
-    }  
+    }
       return foodEntry
   };
 
