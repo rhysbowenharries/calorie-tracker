@@ -29,13 +29,13 @@ ListView.prototype.populate = function (allData) {
   const tableHead = document.createElement('thead');
   this.element.appendChild(tableHead);
   const nameHeader = document.createElement('th');
-  nameHeader.textContent = 'name';
+  nameHeader.textContent = 'Name';
   tableHead.appendChild(nameHeader);
   const caloriesHeader = document.createElement('th');
-  caloriesHeader.textContent = 'calories';
+  caloriesHeader.textContent = 'Calories';
   tableHead.appendChild(caloriesHeader);
   const dateHeader = document.createElement('th');
-  dateHeader.textContent = 'date';
+  dateHeader.textContent = 'Date';
   tableHead.appendChild(dateHeader);
   const deleteHeader = document.createElement('th');
   deleteHeader.textContent = '';

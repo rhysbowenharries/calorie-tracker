@@ -7,12 +7,13 @@ const UpdateFormView = function (element, tile) {
 
 UpdateFormView.prototype.renderUpdateForm = function (data) {
     const objectId = data;
-
+    
     this.replaceElement(`.nameElement${this.tile.id}`, data.foodName, "foodName", "text")
     this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "number")
     this.replaceElement(`.dateElement${this.tile.id}`, data.date, "date", "date")
     
     const submitButton = document.createElement('input')
+    submitButton.id = this.tile.id;
     submitButton.type = "submit"
     this.tile.appendChild(submitButton);
 
