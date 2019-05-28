@@ -9,21 +9,16 @@ EntryView.prototype.render = function (data, index) {
 
   const tile = document.createElement('tr')
   tile.id = index
-  // const tableRow = document.createElement('tr');
-  // tile.appendChild(tableRow);
 
-  // this.createLabel('Name: ', tile);
   this.createOurElement(data.foodName, `nameElement${index}`, tile)
-
-  // this.createLabel('Calories: ', tile);
   this.createOurElement(data.calories, `caloriesElement${index}`, tile)
-
-  // this.createLabel('Date: ', tile)
   this.createOurElement(data.date, `dateElement${index}`, tile)
 
   const buttonD = document.createElement('td');
+  buttonD.id = `delete${index}`
   const deleteButton = document.createElement('button')
   deleteButton.value = data._id
+  deleteButton.id = index;
   this.makeDeleteButton(deleteButton)
   buttonD.appendChild(deleteButton);
   tile.appendChild(buttonD)
@@ -32,17 +27,17 @@ EntryView.prototype.render = function (data, index) {
   })
 
   const buttonU = document.createElement('td');
+  buttonU.id = `update${index}`
   const updateButton = document.createElement('button')
   updateButton.value = data._id
+  updateButton.id = index;
   updateButton.textContent = 'Update'
   updateButton.classList.add('update')
-  // updateButton.style.display = "inline";
   buttonU.appendChild(updateButton);
   tile.appendChild(buttonU)
   updateButton.addEventListener('click', (event) => {
-    event.preventDefault();
     const updateForm = new UpdateFormView(this.element, tile);
-    updateForm.renderUpdateForm(data);
+    updateForm.renderUpdateForm(data, event.target.id);
   })
   this.element.appendChild(tile)
 }

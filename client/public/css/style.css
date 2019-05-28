@@ -84,6 +84,10 @@ tr:nth-child(even) {
   border-radius: 5px;
 }
 
+td {
+  text-transform: capitalize;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -107,4 +111,9 @@ li a {
 
 li a:hover {
   background-color: #111;
+}
+
+td .updateForm {
+  column-span: 5;
+  column-width: 500px;
 }
