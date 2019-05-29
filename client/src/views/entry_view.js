@@ -18,33 +18,19 @@ EntryView.prototype.render = function (data, index) {
   this.createLabel('Date: ', tile);
   this.createOurElement(data.date, `dateElement${index}`, tile)
 
-  const deleteButton = document.createElement('button')
-  deleteButton.value = data._id
-  deleteButton.id = index;
-  deleteButton.textContent = 'Delete'
-  deleteButton.classList.add(`delete${index}`)
-  tile.appendChild(deleteButton)
+
+  const deleteButton = this.makeButton(data, index, "Delete", tile)
   deleteButton.addEventListener('click', (event) => {
     PubSub.publish('EntryView:delete', event)
   })
 
-  const updateButton = document.createElement('button')
-  updateButton.value = data._id
-  updateButton.textContent = 'Update'
-  updateButton.classList.add(`update${index}`)
-  tile.appendChild(updateButton)
+  const updateButton = this.makeButton(data, index, "Update", tile)
   updateButton.addEventListener('click', (event) => {
     event.preventDefault();
     const updateForm = new UpdateFormView(this.element, tile);
     updateForm.renderUpdateForm(data);
   })
   this.element.appendChild(tile)
-}
-
-EntryView.prototype.makeDeleteButton = function (deleteButton) {
-  deleteButton.textContent = 'Delete'
-  deleteButton.classList.add('delete')
-  // deleteButton.style.display = "inline";
 }
 
 EntryView.prototype.createLabel = function(name, tile){
@@ -58,6 +44,15 @@ EntryView.prototype.createOurElement = function(input, classList, tile){
   name.textContent = input
   name.classList.add(classList);
   tile.appendChild(name)
+}
+
+EntryView.prototype.makeButton = function(data, index, content, tile){
+  const deleteButton = document.createElement('button')
+  deleteButton.value = data._id
+  deleteButton.textContent = content
+  deleteButton.classList.add(`${content}${index}`)
+  tile.appendChild(deleteButton)
+  return deleteButton;
 }
 
 module.exports = EntryView;
