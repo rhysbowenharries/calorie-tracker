@@ -9,9 +9,9 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     const objectId = data;
     console.log(this.tile.id)
 
-    this.replaceElement(`.nameElement${this.tile.id}`, data.foodName, 'foodName', "text")
-    this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "float")
-    this.replaceElement(`.dateElement${this.tile.id}`, data.date, "date", "date")
+    this.replaceElement(`.nameElement${this.tile.id}`, data.foodName, 'foodName', "text", "disabled")
+    this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "float", "enable")
+    this.replaceElement(`.dateElement${this.tile.id}`, data.date, "date", "date", "enable")
 
     const updateButton = document.createElement('button');
     updateButton.textContent = "Submit";
@@ -39,13 +39,16 @@ UpdateFormView.prototype.getData = function (event, objectId) {
       return foodEntry
 };
 
-UpdateFormView.prototype.replaceElement = function(element, value, id, type){
+UpdateFormView.prototype.replaceElement = function(element, value, id, type, disabled){
     const oldName = document.querySelector(element)
     const nameInput = document.createElement('input')
     nameInput.type = type;
     nameInput.id = id;
     nameInput.value = value;
     nameInput.classList.add(id);
+    if (disabled === "disabled"){
+        nameInput.setAttribute(disabled, "true")
+    }
     oldName.replaceWith(nameInput);
 }
 
