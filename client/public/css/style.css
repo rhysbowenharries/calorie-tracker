@@ -121,9 +121,13 @@ tr {
   width: 100px;
 }
 
-/* .update-form{
+.update-form{
   display: table;
-} */
+  border-radius: 5px;
+}
+.update-form:label{
+  display: table-cell;
+}
 
 .update-form:nth-child(even) {
   background-color: rgb(24, 163, 17);
