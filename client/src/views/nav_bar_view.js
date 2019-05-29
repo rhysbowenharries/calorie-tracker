@@ -31,7 +31,7 @@ NavBarView.prototype.bindEvents = function () {
   weekly.addEventListener('click', (event) => {
     const container = this.grabDisplayElement()
     const dateRangeModel = new DateRangeModel(this.data)
-    dateRangeModel.weeklyRender()
+    dateRangeModel.weeklyRender(goal)
     })
 
   const all = document.querySelector('a#all')
@@ -48,7 +48,7 @@ NavBarView.prototype.bindEvents = function () {
   monthly.addEventListener('change', (event) => {
     const container = this.grabDisplayElement()
     const dateRangeModel = new DateRangeModel(this.data)
-    dateRangeModel.monthlyRender(event.target.value)
+    dateRangeModel.monthlyRender(event.target.value, goal)
     })
 
 };
