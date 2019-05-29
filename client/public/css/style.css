@@ -11,7 +11,7 @@ header{
 }
 
 nav {
-  clear: both;
+  /* clear: both; */
 }
 
 h1 {
@@ -150,17 +150,26 @@ ul {
   overflow: hidden;
   background-color: #8218ce;
   border-radius: 10px;
+  width: 100%;
+  display: inline-block;
+
 }
+
 
 li a {
   float: left;
   border-radius: 10px;
-  display: block;
+  display: inline-block;
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  width: 21%;
+  width: 22%;
+
+}
+
+a {
+  padding: 1000px;
 }
 
 li a:hover {
@@ -172,7 +181,7 @@ td .updateForm {
   column-width: 500px;
 }
 
-form, nav {
+form, ul {
   border: 2px solid black;
   border-radius: 10px;
 }
