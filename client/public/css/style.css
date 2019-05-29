@@ -55,6 +55,11 @@ input.foodName, input.calories {
 
 .update-form {
   justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-wrap : wrap;
+  height: 120px;
+
 }
 
 #container {
@@ -64,7 +69,29 @@ input.foodName, input.calories {
 }
 
 #concat{
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 25%;
+  max-width: 25%;
+  box-sizing: border-box;
+  font-size: 0.8em;
+}
+
+#concat:last-child {
+  flex-direction: row;
+}
+
+#concat h5 {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-right: 0;
+  padding-left: 0;
+  text-align: left;
+}
+
+#concat label {
+  margin: 0;
+  padding-left: 0;
 }
 
 #goalSet{
@@ -75,7 +102,7 @@ input.foodName, input.calories {
   width: 60%;
   float: left;
   overflow: scroll;
-  height: 500px;
+  height: 50em;
   border-collapse: collapse;
 }
 
@@ -84,7 +111,7 @@ input.foodName, input.calories {
   width: 35%;
   float: right;
   overflow: scroll;
-  height: 500px;
+  height: 50em;
 }
 
 button {
