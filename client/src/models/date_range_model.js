@@ -27,18 +27,15 @@ DateRangeModel.prototype.dailyRender = function (goal) {
       todayFood.push(data)
     }
   })
-  PubSub.publish('DateRange:daily-data', todayFood)
-
-  // this.populate(todayFood)
-  // this.makeAllowanceChart(todayFood, goal)
-  // this.makeIntakeChart(todayFood)
+  const todayObject = {goal: goal, food: todayFood}
+  PubSub.publish('DateRange:daily-data', todayObject)
 };
 
-DateRangeModel.prototype.weeklyRender = function () {
+DateRangeModel.prototype.weeklyRender = function (goal) {
 
   const last7Days = this.last7Days()
   const weeklyFood = []
-
+  const weeklyGoal = goal * 7;
   last7Days.forEach( (day) => {
     this.data.forEach( (food) => {
       if (food.date === day) {
@@ -46,13 +43,13 @@ DateRangeModel.prototype.weeklyRender = function () {
       }
     })
   })
-  PubSub.publish('DateRange:weekly-data', weeklyFood);
-  // this.populate(weeklyFood)
-  // this.makeIntakeChart(weeklyFood)
+  const weeklyObject = {goal: weeklyGoal, food: weeklyFood}
+  PubSub.publish('DateRange:weekly-data', weeklyObject);
 }
 
-DateRangeModel.prototype.monthlyRender = function (month) {
+DateRangeModel.prototype.monthlyRender = function (month, goal) {
   monthlyFood = []
+  const monthlyGoal = goal * 30 
   this.data.forEach( (data) => {
     const monthOfFood = new Date(data.date)
     const monthIndex = monthOfFood.getMonth();
@@ -60,9 +57,8 @@ DateRangeModel.prototype.monthlyRender = function (month) {
       monthlyFood.push(data)
     }
   })
-  PubSub.publish('DateRange:monthly-data', monthlyFood)
-  // this.populate(monthlyFood)
-  // this.makeIntakeChart(monthlyFood)
+  const monthlyObject = {goal: monthlyGoal, food: monthlyFood}
+  PubSub.publish('DateRange:monthly-data', monthlyObject)
 }
 
 DateRangeModel.prototype.populate = function (foodInDateRange) {

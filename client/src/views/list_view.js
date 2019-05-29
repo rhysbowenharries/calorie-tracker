@@ -19,27 +19,22 @@ ListView.prototype.bindEvents = function () {
   })
   PubSub.subscribe("FoodModel:all-data", (event) => {
     const allData = event.detail
-    this.populate(allData)
-    this.makeAllowanceChart(allData, goal)
-    this.makeIntakeChart(allData)
+    this.callFunctions(allData, goal)
   })
   PubSub.subscribe('DateRange:daily-data', (event) => {
-    const allData = event.detail
-    this.populate(allData)
-    this.makeAllowanceChart(allData, goal)
-    this.makeIntakeChart(allData)
+    const allData = event.detail.food
+    const goal = event.detail.goal
+    this.callFunctions(allData, goal);
   })
   PubSub.subscribe('DateRange:weekly-data', (event) => {
-    const allData = event.detail
-    this.populate(allData)
-    this.makeAllowanceChart(allData, goal)
-    this.makeIntakeChart(allData)
+    const allData = event.detail.food
+    const goal = event.detail.goal
+    this.callFunctions(allData, goal)
   })
   PubSub.subscribe('DateRange:monthly-data', (event) => {
-    const allData = event.detail
-    this.populate(allData)
-    this.makeAllowanceChart(allData, goal)
-    this.makeIntakeChart(allData)
+    const allData = event.detail.food
+    const goal = event.detail.goal
+    this.callFunctions(allData, goal);
   })
 };
 
@@ -86,5 +81,11 @@ ListView.prototype.makeAllowanceChart = function (allData, goal) {
     new ChartAllowanceView(allowanceData);
   }
 };
+
+ListView.prototype.callFunctions = function(allData, goal){
+  this.populate(allData)
+  this.makeAllowanceChart(allData, goal)
+  this.makeIntakeChart(allData)
+}
 
 module.exports = ListView;
