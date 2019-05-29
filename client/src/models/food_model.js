@@ -37,7 +37,7 @@ FoodModel.prototype.bindEvents = function () {
         PubSub.publish('FoodModel:all-data', allNewData)
     })
   })
-  PubSub.subscribe('EntryView:update', (event)=> {
+  PubSub.subscribe('UpdateView:update', (event)=> {
     const updateItem = event.detail
     const newObject = this.extractUpdatedData(updateItem)
     this.request.put(updateItem._id, newObject)

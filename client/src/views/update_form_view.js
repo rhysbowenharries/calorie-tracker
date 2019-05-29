@@ -22,7 +22,7 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     this.tile.addEventListener('submit', (event) => {
         event.preventDefault()
         const enteredData = this.getData(event.target, objectId)
-        PubSub.publish('EntryView:update', enteredData)
+        PubSub.publish('UpdateView:update', enteredData)
     })
 }
 

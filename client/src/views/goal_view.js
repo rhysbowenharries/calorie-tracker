@@ -15,7 +15,6 @@ GoalView.prototype.bindEvents = function(){
     })
 
     this.element.addEventListener('submit', (event) => {
-        // event.preventDefault();
         const newGoal = event.target
         console.log(newGoal);
         
