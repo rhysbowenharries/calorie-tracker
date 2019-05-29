@@ -27,10 +27,11 @@ DateRangeModel.prototype.dailyRender = function (goal) {
       todayFood.push(data)
     }
   })
+  // PubSub.publish('FoodModel:all-data', todayFood)
 
   this.populate(todayFood)
-  this.makeIntakeChart(todayFood)
   this.makeAllowanceChart(todayFood, goal)
+  this.makeIntakeChart(todayFood)
 };
 
 DateRangeModel.prototype.weeklyRender = function () {
@@ -106,9 +107,6 @@ DateRangeModel.prototype.makeAllowanceChart = function (allData, goal) {
   allData.forEach( (data) => {
     calorieCount += parseInt(data.calories);
   })
-  console.log(calorieCount);
-  console.log(goal);
-  
   
   let caloriesLeft = (goal - calorieCount);
   Math.round(caloriesLeft);

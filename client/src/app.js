@@ -24,16 +24,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const navBarView = new NavBarView('nav#nav-bar')
   navBarView.bindEvents()
+  
+  const goalUrl = 'http://localhost:3000/api/target'
+  const goal_model = new GoalModel(goalUrl);
+  goal_model.bindEvents();
+  goal_model.getGoal();
 
   const foodUrl = 'http://localhost:3000/api/food'
   const model = new FoodModel(foodUrl);
   model.bindEvents();
   model.getData();
 
-  const goalUrl = 'http://localhost:3000/api/target'
-  const goal_model = new GoalModel(goalUrl);
-  goal_model.bindEvents();
-  goal_model.getGoal();
 
   const goalForm = document.querySelector('form#goalSet')
   const goalView = new GoalView(goalForm)
