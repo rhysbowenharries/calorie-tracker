@@ -33,6 +33,21 @@ img-right{
   opacity: 0.5;
 }
 
+h5 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h5, input {
+  text-transform: capitalize;
+  text-align: center;
+  display: inline-block;
+}
+
+input.foodName, input.calories {
+  width: 70px;
+}
+
 .input-form{
   width: 100%;
   align-items: stretch;
@@ -41,6 +56,10 @@ img-right{
   padding: 10px;
 }
 
+.update-form {
+  display: flex;
+  justify-content: space-between;
+}
 
 #container {
   width: 100%;
@@ -49,7 +68,8 @@ img-right{
 }
 
 label {
-  padding: 10px;
+  margin-top: 20px;
+  font-size: 14px;
 }
 
 #goalSet{
@@ -57,34 +77,36 @@ label {
 }
 
 #food-data {
-  width: 50%;
+  width: 60%;
   float: left;
   overflow: scroll;
+
   height: 500px;
   border-collapse: collapse;
 }
 
 
 #charts {
-  width: 45%;
+  width: 35%;
   float: right;
   overflow: scroll;
   height: 500px;
 }
 
-.delete {
+button {
   width: 50px;
   height: 30px;
   background-color: red;
   border-radius: 5px;
   margin: 5px;
+  margin-top: 15px;
   text-align: center;
 }
 
-.update {
+.submit {
   width: 50px;
   height: 30px;
-  background-color: rgb(119, 89, 190);
+  background-color: red;
   border-radius: 5px;
   margin: 5px;
   text-align: center;
@@ -115,10 +137,12 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #8218ce;
+  border-radius: 10px;
 }
 
 li {
   float: left;
+  border-radius: 10px;
 }
 
 li a {
@@ -137,4 +161,9 @@ li a:hover {
 td .updateForm {
   column-span: 5;
   column-width: 500px;
+}
+
+form, nav {
+  border: 2px solid black;
+  border-radius: 10px;
 }
