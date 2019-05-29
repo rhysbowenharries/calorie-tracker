@@ -13,12 +13,14 @@ const ListView = function (element) {
 }
 
 ListView.prototype.bindEvents = function () {
+  let goal = 0
   PubSub.subscribe('GoalModel:goal', (event)=> {
-    this.calorieAllowance = event.detail[0].goal
+    goal = event.detail[0].goal
   })
   PubSub.subscribe("FoodModel:all-data", (event) => {
     const allData = event.detail
     this.populate(allData)
+    this.makeAllowanceChart(allData, goal)
     this.makeIntakeChart(allData)
   })
 };
@@ -42,25 +44,26 @@ ListView.prototype.makeIntakeChart = function (allData) {
   new ChartIntakeView(chartData)
 };
 
-ListView.prototype.makeAllowanceChart = function (allData) {
+ListView.prototype.makeAllowanceChart = function (allData, goal) {
   const allowanceData = []
   let calorieCount = 0
   allData.forEach( (data) => {
     calorieCount += parseInt(data.calories);
   })
-
-  let caloriesLeft = (this.calorieAllowance - calorieCount);
+  console.log(goal);  
+  
+  let caloriesLeft = (goal - calorieCount);
   Math.round(caloriesLeft);
   console.log(caloriesLeft);
   if(caloriesLeft < 0){
     console.log("You fat bastard!");
     caloriesLeft = Math.round(caloriesLeft *= -1);
-    allowanceData.push({name:"Calories left", y:this.calorieAllowance - calorieCount});
+    allowanceData.push({name:"Calories left", y:goal - calorieCount});
     allowanceData.push({name:`You have overeaten by ${caloriesLeft} calories`, y:calorieCount})
     new ChartAllowanceView(allowanceData);
 
   } else {
-    allowanceData.push({name:"Calories left", y:this.calorieAllowance - calorieCount});
+    allowanceData.push({name:"Calories left", y:goal - calorieCount});
     allowanceData.push({name:"Calories consumed", y:calorieCount})
     new ChartAllowanceView(allowanceData);
   }

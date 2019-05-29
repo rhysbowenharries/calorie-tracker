@@ -14,7 +14,6 @@ GoalModel.prototype.bindEvents = function(){
         this.request.put(updateGoal._id, goalObject)
             .then((goal) => {
                 PubSub.publish('GoalModel:goal', goal)
-                console.log("goalModelGoal", goal);
             })
       })
 }

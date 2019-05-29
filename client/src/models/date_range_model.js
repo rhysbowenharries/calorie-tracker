@@ -19,7 +19,7 @@ DateRangeModel.prototype.bindEvents =  function() {
   })
 }
 
-DateRangeModel.prototype.dailyRender = function () {
+DateRangeModel.prototype.dailyRender = function (goal) {
   const today = new Date().toISOString().substr(0, 10);
   const todayFood = []
   this.data.forEach( (data) => {
@@ -27,8 +27,10 @@ DateRangeModel.prototype.dailyRender = function () {
       todayFood.push(data)
     }
   })
+  // PubSub.publish('FoodModel:all-data', todayFood)
 
   this.populate(todayFood)
+  this.makeAllowanceChart(todayFood, goal)
   this.makeIntakeChart(todayFood)
 };
 
@@ -99,5 +101,28 @@ DateRangeModel.prototype.makeIntakeChart = function (allData) {
   new ChartIntakeView(chartData)
 };
 
+DateRangeModel.prototype.makeAllowanceChart = function (allData, goal) {
+  const allowanceData = []
+  let calorieCount = 0
+  allData.forEach( (data) => {
+    calorieCount += parseInt(data.calories);
+  })
+  
+  let caloriesLeft = (goal - calorieCount);
+  Math.round(caloriesLeft);
+  console.log(caloriesLeft);
+  if(caloriesLeft < 0){
+    console.log("You fat bastard!");
+    caloriesLeft = Math.round(caloriesLeft *= -1);
+    allowanceData.push({name:"Calories left", y:goal - calorieCount});
+    allowanceData.push({name:`You have overeaten by ${caloriesLeft} calories`, y:calorieCount})
+    new ChartAllowanceView(allowanceData);
+
+  } else {
+    allowanceData.push({name:"Calories left", y:goal - calorieCount});
+    allowanceData.push({name:"Calories consumed", y:calorieCount})
+    new ChartAllowanceView(allowanceData);
+  }
+}
 
 module.exports = DateRangeModel;

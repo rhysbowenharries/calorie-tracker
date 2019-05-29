@@ -21,12 +21,6 @@ h1 {
   font-family: Apple Chancery, cursive;
 }
 
-img-left{
-  float: left;
-  border-radius: 50%;
-  /* width: 200px; */
-}
-
 label{
   /* margin: 26.70px; */
   padding-left: 0.25em;
@@ -37,6 +31,11 @@ label{
   font-size: 1.5em;
   font-weight: bold;
 }
+
+/* .dropdwon{
+  font-size: 1.5em;
+  font-weight: bold;
+} */
 
 h5 {
   padding-left: 1em;
@@ -124,15 +123,15 @@ button {
   text-align: center;
 }
 
-th {
+/* th {
   text-align: center;
   width: 100px;
-}
+} */
 
-tr {
+/* tr {
   text-align: center;
   width: 100px;
-}
+} */
 
 .update-form:nth-child(even) {
   background-color: rgb(24, 163, 17);
@@ -166,6 +165,8 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
   width: 22%;
+  font-size: 1.5em;
+  font-weight: bold;
 
 }
 
