@@ -80,7 +80,6 @@ label {
   width: 60%;
   float: left;
   overflow: scroll;
-
   height: 500px;
   border-collapse: collapse;
 }
