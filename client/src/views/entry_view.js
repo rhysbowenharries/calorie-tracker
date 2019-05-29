@@ -26,6 +26,7 @@ EntryView.prototype.render = function (data, index) {
 
   const photo = document.createElement('img');
   photo.src = data.photo;
+
   div4.appendChild(photo)
 
   const deleteButton = this.makeButton(data, index, "Delete", div5)

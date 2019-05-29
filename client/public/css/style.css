@@ -78,11 +78,12 @@ input.foodName, input.calories {
 }
 
 img {
-  height: 50px,
+  object-fit: contain;
+
 }
 
 #concat:last-child {
-  flex-direction: row;
+  flex-direction: column;
 }
 
 #concat h5 {
