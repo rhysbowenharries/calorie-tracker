@@ -5,22 +5,18 @@ const EntryView = function (element) {
   this.element = element
 }
 
-EntryView.prototype.render = function (data, index) {
-
+EntryView.prototype.render = function (data, index) {  
   const tile = document.createElement('form')
   tile.classList.add('update-form')
   tile.id = index
+  console.log(data);
+  
 
-  // Wrap related elements in a container (ie. div), and set container
-  // to `display: inline-block` in some way or another
-
-  // app container <--appendChild-- div.inline-block <--appendChild-- label and h5
-
-  // this.createDiv();
   const div1 = this.createDiv(tile);
   const div2 = this.createDiv(tile);
   const div3 = this.createDiv(tile);
   const div4 = this.createDiv(tile);
+  const div5 = this.createDiv(tile);
   this.createLabel('Name:', div1);
   this.createOurElement(data.foodName, `nameElement${index}`, div1)
   this.createLabel('Calories:', div2);
@@ -28,13 +24,16 @@ EntryView.prototype.render = function (data, index) {
   this.createLabel('Date:', div3);
   this.createOurElement(data.date, `dateElement${index}`, div3)
 
+  const photo = document.createElement('img');
+  photo.src = data.photo;
+  div4.appendChild(photo)
 
-  const deleteButton = this.makeButton(data, index, "Delete", div4)
+  const deleteButton = this.makeButton(data, index, "Delete", div5)
   deleteButton.addEventListener('click', (event) => {
     PubSub.publish('EntryView:delete', event)
   })
 
-  const updateButton = this.makeButton(data, index, "Update", div4)
+  const updateButton = this.makeButton(data, index, "Update", div5)
   updateButton.addEventListener('click', (event) => {
     event.preventDefault();
     const updateForm = new UpdateFormView(this.element, tile);

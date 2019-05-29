@@ -59,7 +59,8 @@ FoodModel.prototype.extractData = function(allData, date){
     const newObject = {
       foodName: food.food_name,
       calories: food.nf_calories,
-      date: date
+      date: date,
+      photo: food.photo.thumb
     }
     return newObject;
   })
