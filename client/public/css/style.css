@@ -124,6 +124,7 @@ tr {
 .update-form{
   display: table;
   border-radius: 5px;
+  label: table-cell;
 }
 .update-form:label{
   display: table-cell;
