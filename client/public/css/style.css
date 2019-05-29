@@ -27,6 +27,17 @@ img-left{
   /* width: 200px; */
 }
 
+label{
+  /* margin: 26.70px; */
+  padding-left: 0.25em;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  margin-right: 0px;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
 img-right{
   float: right;
   border-radius: 50%;
@@ -34,14 +45,21 @@ img-right{
 }
 
 h5 {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 1em;
+  padding-right: 2em;
+  /* width: 5em;
+  vertical-align: middle;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 0px;
+  margin-right: 0px; */
 }
 
 h5, input {
   text-transform: capitalize;
   text-align: center;
   display: inline-block;
+  font-size: 1.5em;
 }
 
 input.foodName, input.calories {
@@ -49,6 +67,7 @@ input.foodName, input.calories {
 }
 
 .input-form{
+  vertical-align: middle;
   width: 100%;
   align-items: stretch;
   text-align: center;
@@ -57,7 +76,8 @@ input.foodName, input.calories {
 }
 
 .update-form {
-  display: flex;
+  /* display: flex; */
+  /* flex-wrap: nowrap; */
   justify-content: space-between;
 }
 
@@ -67,9 +87,8 @@ input.foodName, input.calories {
   margin: auto;
 }
 
-label {
-  margin-top: 20px;
-  font-size: 14px;
+#concat{
+  display: inline-block;
 }
 
 #goalSet{
@@ -121,15 +140,6 @@ tr {
   width: 100px;
 }
 
-.update-form{
-  display: table;
-  border-radius: 5px;
-  label: table-cell;
-}
-.update-form:label{
-  display: table-cell;
-}
-
 .update-form:nth-child(even) {
   background-color: rgb(24, 163, 17);
   border-radius: 5px;
@@ -138,10 +148,6 @@ tr {
 .update-form:nth-child(odd) {
   background-color: rgb(184, 20, 84);
   border-radius: 5px;
-}
-
-td {
-  text-transform: capitalize;
 }
 
 ul {

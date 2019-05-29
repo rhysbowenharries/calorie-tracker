@@ -11,20 +11,30 @@ EntryView.prototype.render = function (data, index) {
   tile.classList.add('update-form')
   tile.id = index
 
-  this.createLabel('Name: ', tile);
-  this.createOurElement(data.foodName, `nameElement${index}`, tile)
-  this.createLabel('Calories: ', tile);
-  this.createOurElement(data.calories, `caloriesElement${index}`, tile)
-  this.createLabel('Date: ', tile);
-  this.createOurElement(data.date, `dateElement${index}`, tile)
+  // Wrap related elements in a container (ie. div), and set container
+  // to `display: inline-block` in some way or another
+
+  // app container <--appendChild-- div.inline-block <--appendChild-- label and h5
+
+  // this.createDiv();
+  const div1 = this.createDiv(tile);
+  const div2 = this.createDiv(tile);
+  const div3 = this.createDiv(tile);
+  const div4 = this.createDiv(tile);
+  this.createLabel('Name:', div1);
+  this.createOurElement(data.foodName, `nameElement${index}`, div1)
+  this.createLabel('Calories:', div2);
+  this.createOurElement(data.calories, `caloriesElement${index}`, div2)
+  this.createLabel('Date:', div3);
+  this.createOurElement(data.date, `dateElement${index}`, div3)
 
 
-  const deleteButton = this.makeButton(data, index, "Delete", tile)
+  const deleteButton = this.makeButton(data, index, "Delete", div4)
   deleteButton.addEventListener('click', (event) => {
     PubSub.publish('EntryView:delete', event)
   })
 
-  const updateButton = this.makeButton(data, index, "Update", tile)
+  const updateButton = this.makeButton(data, index, "Update", div4)
   updateButton.addEventListener('click', (event) => {
     event.preventDefault();
     const updateForm = new UpdateFormView(this.element, tile);
@@ -53,6 +63,13 @@ EntryView.prototype.makeButton = function(data, index, content, tile){
   deleteButton.classList.add(`${content}${index}`)
   tile.appendChild(deleteButton)
   return deleteButton;
+}
+
+EntryView.prototype.createDiv = function(tile){
+  const div = document.createElement('div');
+  div.id = 'concat';
+  tile.appendChild(div);
+  return div;
 }
 
 module.exports = EntryView;

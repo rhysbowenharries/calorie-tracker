@@ -15,7 +15,7 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "float")
     this.replaceElement(`.dateElement${this.tile.id}`, data.date, "date", "date")
     this.replaceElement(`.Delete${this.tile.id}`, "Submit", data._id, "submit")
-    
+
     const removeButton = document.querySelector(`.Update${this.tile.id}`);
     removeButton.parentNode.removeChild(removeButton);
 
