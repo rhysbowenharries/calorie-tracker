@@ -26,23 +26,7 @@ ListView.prototype.bindEvents = function () {
 
 ListView.prototype.populate = function (allData) {
   this.element.innerHTML = ''
-  const tableHead = document.createElement('thead');
-  this.element.appendChild(tableHead);
-  const nameHeader = document.createElement('th');
-  nameHeader.textContent = 'Name';
-  tableHead.appendChild(nameHeader);
-  const caloriesHeader = document.createElement('th');
-  caloriesHeader.textContent = 'Calories';
-  tableHead.appendChild(caloriesHeader);
-  const dateHeader = document.createElement('th');
-  dateHeader.textContent = 'Date';
-  tableHead.appendChild(dateHeader);
-  const deleteHeader = document.createElement('th');
-  deleteHeader.textContent = '';
-  tableHead.appendChild(deleteHeader);
-  const updateHeader = document.createElement('th');
-  updateHeader.textContent = '';
-  tableHead.appendChild(updateHeader);
+  
   allData.forEach( (data, index) => {
     const tile = new EntryView(this.element)
     tile.render(data, index)

@@ -2,10 +2,11 @@ const ChartAllowanceView = function (data) {
 
   this.data = data
   console.log('graph',this.data);
-  
+
 
   Highcharts.chart('allowance-chart-container', {
     chart: {
+      backgroundColor: '#18A311',
       type: 'pie'
     },
     title: {

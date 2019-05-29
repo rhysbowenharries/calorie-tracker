@@ -1,7 +1,13 @@
 body {
-  background-color: rgb(117, 138, 247);
-  width: 100%;
+  background: url('/images/asparagus.jpg');
+  /* background-color: rgb(117, 138, 247); */
+  background-size: 100%;
+  background-repeat: repeat;
+  color: white;
+}
 
+header{
+  height: 8em;
 }
 
 nav {
@@ -10,6 +16,36 @@ nav {
 
 h1 {
   text-align: center;
+  font-size: 3em;
+  /* font-style: oblique; */
+  font-family: Apple Chancery, cursive;
+}
+
+img-left{
+  float: left;
+  border-radius: 50%;
+  /* width: 200px; */
+}
+
+img-right{
+  float: right;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+h5 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+h5, input {
+  text-transform: capitalize;
+  text-align: center;
+  display: inline-block;
+}
+
+input.foodName, input.calories {
+  width: 70px;
 }
 
 .input-form{
@@ -20,15 +56,20 @@ h1 {
   padding: 10px;
 }
 
+.update-form {
+  display: flex;
+  justify-content: space-between;
+}
 
-.container {
+#container {
   width: 100%;
-  height: 400px;
-  color: blue;
+  background: rgba(0, 0, 0, 0.2);
+  margin: auto;
 }
 
 label {
-  padding: 10px;
+  margin-top: 20px;
+  font-size: 14px;
 }
 
 #goalSet{
@@ -36,7 +77,7 @@ label {
 }
 
 #food-data {
-  width: 50%;
+  width: 60%;
   float: left;
   overflow: scroll;
   height: 500px;
@@ -45,25 +86,26 @@ label {
 
 
 #charts {
-  width: 45%;
+  width: 35%;
   float: right;
   overflow: scroll;
   height: 500px;
 }
 
-.delete {
+button {
   width: 50px;
   height: 30px;
   background-color: red;
   border-radius: 5px;
   margin: 5px;
+  margin-top: 15px;
   text-align: center;
 }
 
-.update {
+.submit {
   width: 50px;
   height: 30px;
-  background-color: rgb(119, 89, 190);
+  background-color: red;
   border-radius: 5px;
   margin: 5px;
   text-align: center;
@@ -79,8 +121,21 @@ tr {
   width: 100px;
 }
 
-tr:nth-child(even) {
-  background-color: #f2f2f2;
+.update-form{
+  display: table;
+  border-radius: 5px;
+}
+.update-form:label{
+  display: table-cell;
+}
+
+.update-form:nth-child(even) {
+  background-color: rgb(24, 163, 17);
+  border-radius: 5px;
+}
+
+.update-form:nth-child(odd) {
+  background-color: rgb(184, 20, 84);
   border-radius: 5px;
 }
 
@@ -94,10 +149,12 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #8218ce;
+  border-radius: 10px;
 }
 
 li {
   float: left;
+  border-radius: 10px;
 }
 
 li a {
@@ -116,4 +173,9 @@ li a:hover {
 td .updateForm {
   column-span: 5;
   column-width: 500px;
+}
+
+form, nav {
+  border: 2px solid black;
+  border-radius: 10px;
 }
