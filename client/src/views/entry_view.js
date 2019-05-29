@@ -40,6 +40,7 @@ EntryView.prototype.render = function (data, index) {
     const updateForm = new UpdateFormView(this.element, tile);
     updateForm.renderUpdateForm(data);
   })
+  
   this.element.appendChild(tile)
 }
 

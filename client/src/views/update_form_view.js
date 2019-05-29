@@ -7,9 +7,7 @@ const UpdateFormView = function (element, tile) {
 
 UpdateFormView.prototype.renderUpdateForm = function (data) {
     const objectId = data;
-    console.log('data', data);
     console.log(this.tile.id)
-
 
     this.replaceElement(`.nameElement${this.tile.id}`, data.foodName, 'foodName', "text")
     this.replaceElement(`.caloriesElement${this.tile.id}`, data.calories, "calories", "float")
@@ -22,7 +20,7 @@ UpdateFormView.prototype.renderUpdateForm = function (data) {
     this.tile.addEventListener('submit', (event) => {
         event.preventDefault()
         const enteredData = this.getData(event.target, objectId)
-        PubSub.publish('EntryView:update', enteredData)
+        PubSub.publish('UpdateView:update', enteredData)
     })
 }
 

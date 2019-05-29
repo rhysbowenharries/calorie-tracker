@@ -14,10 +14,10 @@ GoalModel.prototype.bindEvents = function(){
         this.request.put(updateGoal._id, goalObject)
             .then((goal) => {
                 PubSub.publish('GoalModel:goal', goal)
+                console.log("goalModelGoal", goal);
             })
       })
 }
-
 
 GoalModel.prototype.getGoal = function() {
     this.request.get()
@@ -31,7 +31,7 @@ GoalModel.prototype.createGoalObject = function(updateGoal){
         goal: parseInt(updateGoal.goal)
     }
     console.log(goal);
-    
+
     return goal;
 }
 
