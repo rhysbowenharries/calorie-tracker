@@ -17,7 +17,7 @@ NavBarView.prototype.bindEvents = function () {
   })
   PubSub.subscribe('GoalModel:goal', (event)=> {
     goal = event.detail[0].goal
-    
+
   })
 
   const daily = document.querySelector('a#daily')
@@ -25,31 +25,31 @@ NavBarView.prototype.bindEvents = function () {
     const container = this.grabDisplayElement()
     const dateRangeModel = new DateRangeModel(this.data)
     dateRangeModel.dailyRender(goal)
-    })
+  })
 
   const weekly = document.querySelector('a#weekly')
   weekly.addEventListener('click', (event) => {
     const container = this.grabDisplayElement()
     const dateRangeModel = new DateRangeModel(this.data)
     dateRangeModel.weeklyRender(goal)
-    })
+  })
 
   const all = document.querySelector('a#all')
   all.addEventListener('click', (event) => {
 
-    
+
     PubSub.publish('FoodModel:all-data', this.allData)
     // const container = this.grabDisplayElement()
     // const listView = new ListView(container)
     // listView.populate(this.data)
-    })
+  })
 
   const monthly = document.querySelector('#monthly')
   monthly.addEventListener('change', (event) => {
     const container = this.grabDisplayElement()
     const dateRangeModel = new DateRangeModel(this.data)
     dateRangeModel.monthlyRender(event.target.value, goal)
-    })
+  })
 
 };
 

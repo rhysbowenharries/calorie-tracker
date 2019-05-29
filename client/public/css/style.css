@@ -33,7 +33,7 @@ label{
 h5 {
   padding-left: 1em;
   padding-right: 2em;
-  margin-right: 0px; 
+  margin-right: 0px;
 }
 
 h5, input {
@@ -79,6 +79,7 @@ input.foodName, input.calories {
 
 img {
   object-fit: contain;
+  max-height: 120px;
 
 }
 
