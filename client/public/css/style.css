@@ -11,7 +11,7 @@ header{
 }
 
 nav {
-  clear: both;
+  /* clear: both; */
 }
 
 h1 {
@@ -151,20 +151,26 @@ ul {
   overflow: hidden;
   background-color: #8218ce;
   border-radius: 10px;
+  width: 100%;
+  display: inline-block;
+
 }
 
-li {
-  float: left;
-  border-radius: 10px;
-}
 
 li a {
-  display: block;
+  float: left;
+  border-radius: 10px;
+  display: inline-block;
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  width: 300px;
+  width: 22%;
+
+}
+
+a {
+  padding: 1000px;
 }
 
 li a:hover {
@@ -176,7 +182,17 @@ td .updateForm {
   column-width: 500px;
 }
 
-form, nav {
+form, ul {
   border: 2px solid black;
   border-radius: 10px;
+}
+
+select {
+  width: 15px;
+  position: relative;
+  boarder: 25%;
+}
+
+option {
+margin-top: 10px;
 }
