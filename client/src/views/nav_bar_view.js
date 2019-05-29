@@ -9,15 +9,20 @@ const NavBarView = function (element) {
 }
 
 NavBarView.prototype.bindEvents = function () {
+  let goal = 0;
   PubSub.subscribe('FoodModel:all-data', (event) => {
     this.data = event.detail
-    })
+  })
+  PubSub.subscribe('GoalModel:goal', (event)=> {
+    goal = event.detail[0].goal
+    
+  })
 
   const daily = document.querySelector('a#daily')
   daily.addEventListener('click', (event) => {
     const container = this.grabDisplayElement()
     const dateRangeModel = new DateRangeModel(this.data)
-    dateRangeModel.dailyRender()
+    dateRangeModel.dailyRender(goal)
     })
 
   const weekly = document.querySelector('a#weekly')
