@@ -33,7 +33,7 @@ label{
 h5 {
   padding-left: 1em;
   padding-right: 2em;
-  margin-right: 0px; */
+  margin-right: 0px; 
 }
 
 h5, input {
@@ -164,7 +164,7 @@ form, ul {
 select {
   width: 15px;
   position: relative;
-  boarder: 25%;
+  border: 25%;
 }
 
 option {
