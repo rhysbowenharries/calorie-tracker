@@ -17,9 +17,11 @@ FormView.prototype.bindEvents = function () {
 };
 
 FormView.prototype.getData = function (newData) {
+  console.log(newData);
+  
   const foodEntry = {
     query: newData.foodName.value,
-    calories: newData.calories.value,
+    quantity: newData.quantity.value,
     date: newData.date.value
   }
     return foodEntry
