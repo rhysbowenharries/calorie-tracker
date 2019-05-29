@@ -24,33 +24,33 @@ FoodModel.prototype.bindEvents = function () {
       this.request.post(extractedDataObject, {
         'Content-Type': 'application/json'
       })
-        .then((allNewData) => {
-          PubSub.publish('FoodModel:all-data', allNewData)
-        })
+      .then((allNewData) => {
+        PubSub.publish('FoodModel:all-data', allNewData)
+      })
 
     })
   })
   PubSub.subscribe('EntryView:delete', (event) => {
     const deleteItem = event.detail.target.value
     this.request.delete(deleteItem)
-      .then((allNewData) => {
-        PubSub.publish('FoodModel:all-data', allNewData)
+    .then((allNewData) => {
+      PubSub.publish('FoodModel:all-data', allNewData)
     })
   })
   PubSub.subscribe('UpdateView:update', (event)=> {
     const updateItem = event.detail
     const newObject = this.extractUpdatedData(updateItem)
     this.request.put(updateItem._id, newObject)
-      .then( (allData) => {
-        PubSub.publish('FoodModel:all-data', allData)
-        })
+    .then( (allData) => {
+      PubSub.publish('FoodModel:all-data', allData)
+    })
   })
 };
 
 FoodModel.prototype.getData = function () {
-this.request.get()
+  this.request.get()
   .then( (allData) => {
-  PubSub.publish('FoodModel:all-data', allData)
+    PubSub.publish('FoodModel:all-data', allData)
   })
 };
 
@@ -68,12 +68,12 @@ FoodModel.prototype.extractData = function(allData, date){
 }
 
 FoodModel.prototype.extractUpdatedData = function(detail){
-    const newObject = {
-      foodName: detail.foodName,
-      calories: detail.calories, 
-      date: detail.date
-    }
-    return newObject;
+  const newObject = {
+    foodName: detail.foodName,
+    calories: detail.calories,
+    date: detail.date
+  }
+  return newObject;
 }
 
 module.exports = FoodModel
