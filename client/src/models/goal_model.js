@@ -19,14 +19,6 @@ GoalModel.prototype.bindEvents = function(){
       })
 }
 
-GoalModel.prototype.rePublishOnSubmit = function () {
-  const daily = document.querySelector('a#daily')
-  daily.addEventListener('click', () => {
-    this.bindEvents
-  })
-};
-
-
 GoalModel.prototype.getGoal = function() {
     this.request.get()
       .then( (goal) => {

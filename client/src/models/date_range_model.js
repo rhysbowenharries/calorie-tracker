@@ -17,17 +17,7 @@ DateRangeModel.prototype.bindEvents =  function() {
     this.data = event.detail
     console.log("foodModelData",this.data);
   })
-  PubSub.subscribe('GoalModel:goal', (event)=> {
-    this.calorieAllowance = event.detail[0].goal
-    this.makeAllowanceChart(this.data, this.calorieAllowance)
-    console.log("bindEvents",this.data);
-  })
-
-
 }
-
-
-
 
 DateRangeModel.prototype.dailyRender = function () {
   const today = new Date().toISOString().substr(0, 10);
@@ -40,12 +30,7 @@ DateRangeModel.prototype.dailyRender = function () {
 
   this.populate(todayFood)
   this.makeIntakeChart(todayFood)
-
-
 };
-
-
-
 
 DateRangeModel.prototype.weeklyRender = function () {
 
@@ -63,9 +48,6 @@ DateRangeModel.prototype.weeklyRender = function () {
   this.makeIntakeChart(weeklyFood)
 }
 
-
-
-
 DateRangeModel.prototype.monthlyRender = function (month) {
   monthlyFood = []
   this.data.forEach( (data) => {
@@ -79,8 +61,6 @@ DateRangeModel.prototype.monthlyRender = function (month) {
   this.makeIntakeChart(monthlyFood)
 }
 
-
-
 DateRangeModel.prototype.populate = function (foodInDateRange) {
   const container = document.querySelector('#food-data')
   container.innerHTML = ''
@@ -89,9 +69,6 @@ DateRangeModel.prototype.populate = function (foodInDateRange) {
     tile.render(data, index)
   })
 };
-
-
-
 
 DateRangeModel.prototype.formatDate = function (date) {
 
@@ -104,8 +81,6 @@ DateRangeModel.prototype.formatDate = function (date) {
   return date
 }
 
-
-
 DateRangeModel.prototype.last7Days = function () {
   const result = [];
   for (let i=0; i<7; i++) {
@@ -116,10 +91,6 @@ DateRangeModel.prototype.last7Days = function () {
   return(result);
 }
 
-
-
-
-
 DateRangeModel.prototype.makeIntakeChart = function (allData) {
   const chartData = []
   allData.forEach( (data) => {
@@ -129,33 +100,4 @@ DateRangeModel.prototype.makeIntakeChart = function (allData) {
 };
 
 
-
-DateRangeModel.prototype.makeAllowanceChart = function (allData) {
-
-  console.log("allowanceChart",this.calorieAllowance);
-  this.calorieAllowance
-  this.calorieAllowance = 2000
-  console.log("mac",allData)
-  const allowanceData = []
-  let calorieCount = 0
-  allData.forEach( (data) => {
-    calorieCount += parseInt(data.calories);
-  })
-
-  let caloriesLeft = (this.calorieAllowance - calorieCount);
-  Math.round(caloriesLeft);
-  console.log("makeChart",caloriesLeft);
-  if(caloriesLeft < 0){
-    console.log("You fat bastard!");
-    caloriesLeft = Math.round(caloriesLeft *= -1);
-    allowanceData.push({name:"Calories left", y:this.calorieAllowance - calorieCount});
-    allowanceData.push({name:`You have overeaten by ${caloriesLeft} calories`, y:calorieCount})
-    new ChartAllowanceView(allowanceData);
-
-  } else {
-    allowanceData.push({name:"Calories left", y:this.calorieAllowance - calorieCount});
-    allowanceData.push({name:"Calories consumed", y:calorieCount})
-    new ChartAllowanceView(allowanceData);
-  }
-}
 module.exports = DateRangeModel;

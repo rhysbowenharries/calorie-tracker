@@ -21,16 +21,7 @@ GoalView.prototype.bindEvents = function(){
         PubSub.publish('GoalView:goalset', newGoalObject)
         event.target.reset()
     })
-}
-
-
-
-
-
-
-
-
-
+  }
 
 GoalView.prototype.getGoal = function(newGoal){
     const goalObject = {
