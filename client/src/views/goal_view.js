@@ -16,13 +16,12 @@ GoalView.prototype.bindEvents = function(){
 
     this.element.addEventListener('submit', (event) => {
         const newGoal = event.target
-        console.log(newGoal);
-        
+        console.log("newGoal",this.element);
         const newGoalObject = this.getGoal(newGoal);
         PubSub.publish('GoalView:goalset', newGoalObject)
         event.target.reset()
     })
-}
+  }
 
 GoalView.prototype.getGoal = function(newGoal){
     const goalObject = {

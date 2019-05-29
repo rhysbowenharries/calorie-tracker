@@ -4,6 +4,7 @@ const ChartIntakeView = function (data) {
 
   this.data = data
 
+
   Highcharts.chart('intake-chart-container', {
     chart: {
       backgroundColor: '#18A311',

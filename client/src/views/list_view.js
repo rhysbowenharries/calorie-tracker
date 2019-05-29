@@ -20,27 +20,24 @@ ListView.prototype.bindEvents = function () {
     const allData = event.detail
     this.populate(allData)
     this.makeIntakeChart(allData)
-    this.makeAllowanceChart(allData)
-
   })
 };
 
 ListView.prototype.populate = function (allData) {
   this.element.innerHTML = ''
-  
+
   allData.forEach( (data, index) => {
     const tile = new EntryView(this.element)
     tile.render(data, index)
   })
+  this.makeIntakeChart(allData)
+
 };
 
 ListView.prototype.makeIntakeChart = function (allData) {
-  //take allData from bind events and render chart in ChartIntakeViews
   const chartData = []
   allData.forEach( (data) => {
     chartData.push({name: data.foodName, y:parseInt(data.calories)})
-
-
   })
   new ChartIntakeView(chartData)
 };
