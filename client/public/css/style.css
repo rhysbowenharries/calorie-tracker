@@ -152,18 +152,15 @@ ul {
   border-radius: 10px;
 }
 
-li {
+li a {
   float: left;
   border-radius: 10px;
-}
-
-li a {
   display: block;
   color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  width: 300px;
+  width: 21%;
 }
 
 li a:hover {
@@ -178,4 +175,14 @@ td .updateForm {
 form, nav {
   border: 2px solid black;
   border-radius: 10px;
+}
+
+select {
+  width: 15px;
+  position: relative;
+  boarder: 25%;
+}
+
+option {
+margin-top: 10px;
 }
