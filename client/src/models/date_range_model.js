@@ -27,11 +27,11 @@ DateRangeModel.prototype.dailyRender = function (goal) {
       todayFood.push(data)
     }
   })
-  // PubSub.publish('FoodModel:all-data', todayFood)
+  PubSub.publish('DateRange:daily-data', todayFood)
 
-  this.populate(todayFood)
-  this.makeAllowanceChart(todayFood, goal)
-  this.makeIntakeChart(todayFood)
+  // this.populate(todayFood)
+  // this.makeAllowanceChart(todayFood, goal)
+  // this.makeIntakeChart(todayFood)
 };
 
 DateRangeModel.prototype.weeklyRender = function () {
@@ -46,8 +46,9 @@ DateRangeModel.prototype.weeklyRender = function () {
       }
     })
   })
-  this.populate(weeklyFood)
-  this.makeIntakeChart(weeklyFood)
+  PubSub.publish('DateRange:weekly-data', weeklyFood);
+  // this.populate(weeklyFood)
+  // this.makeIntakeChart(weeklyFood)
 }
 
 DateRangeModel.prototype.monthlyRender = function (month) {
@@ -59,8 +60,9 @@ DateRangeModel.prototype.monthlyRender = function (month) {
       monthlyFood.push(data)
     }
   })
-  this.populate(monthlyFood)
-  this.makeIntakeChart(monthlyFood)
+  PubSub.publish('DateRange:monthly-data', monthlyFood)
+  // this.populate(monthlyFood)
+  // this.makeIntakeChart(monthlyFood)
 }
 
 DateRangeModel.prototype.populate = function (foodInDateRange) {

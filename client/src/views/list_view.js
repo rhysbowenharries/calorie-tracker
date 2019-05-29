@@ -23,6 +23,24 @@ ListView.prototype.bindEvents = function () {
     this.makeAllowanceChart(allData, goal)
     this.makeIntakeChart(allData)
   })
+  PubSub.subscribe('DateRange:daily-data', (event) => {
+    const allData = event.detail
+    this.populate(allData)
+    this.makeAllowanceChart(allData, goal)
+    this.makeIntakeChart(allData)
+  })
+  PubSub.subscribe('DateRange:weekly-data', (event) => {
+    const allData = event.detail
+    this.populate(allData)
+    this.makeAllowanceChart(allData, goal)
+    this.makeIntakeChart(allData)
+  })
+  PubSub.subscribe('DateRange:monthly-data', (event) => {
+    const allData = event.detail
+    this.populate(allData)
+    this.makeAllowanceChart(allData, goal)
+    this.makeIntakeChart(allData)
+  })
 };
 
 ListView.prototype.populate = function (allData) {
