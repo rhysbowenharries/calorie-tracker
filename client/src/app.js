@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const navBarView = new NavBarView('nav#nav-bar')
   navBarView.bindEvents()
-  
+
   const goalUrl = 'http://localhost:3000/api/target'
   const goal_model = new GoalModel(goalUrl);
   goal_model.bindEvents();
@@ -39,5 +39,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const goalForm = document.querySelector('form#goalSet')
   const goalView = new GoalView(goalForm)
   goalView.bindEvents();
-  
+
 })

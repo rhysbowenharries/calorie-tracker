@@ -5,12 +5,12 @@ const EntryView = function (element) {
   this.element = element
 }
 
-EntryView.prototype.render = function (data, index) {  
+EntryView.prototype.render = function (data, index) {
   const tile = document.createElement('form')
   tile.classList.add('update-form')
   tile.id = index
   console.log(data);
-  
+
 
   const div1 = this.createDiv(tile);
   const div2 = this.createDiv(tile);
@@ -40,7 +40,7 @@ EntryView.prototype.render = function (data, index) {
     const updateForm = new UpdateFormView(this.element, tile);
     updateForm.renderUpdateForm(data);
   })
-  
+
   this.element.appendChild(tile)
 }
 

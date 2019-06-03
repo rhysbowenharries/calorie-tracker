@@ -63,8 +63,8 @@ ListView.prototype.makeAllowanceChart = function (allData, goal) {
   allData.forEach( (data) => {
     calorieCount += parseInt(data.calories);
   })
-  console.log(goal);  
-  
+  console.log(goal);
+
   let caloriesLeft = (goal - calorieCount);
   Math.round(caloriesLeft);
   console.log(caloriesLeft);
