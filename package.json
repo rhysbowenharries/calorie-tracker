@@ -1,5 +1,5 @@
 {
-  "name": "Group-Proj-habit-tracker",
+  "name": "Calorie-Tracker-Project",
   "version": "1.0.0",
   "description": "",
   "main": "webpack.config.js",
@@ -11,15 +11,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rhysbowenharries/Group-Proj-habit-tracker.git"
+    "url": "git+https://github.com/mikeyfbz/Calorie-Tracker-Project"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rhysbowenharries/Group-Proj-habit-tracker/issues"
+    "url": "https://github.com/mikeyfbz/Calorie-Tracker-Project/issues"
   },
-  "homepage": "https://github.com/rhysbowenharries/Group-Proj-habit-tracker#readme",
+  "homepage": "https://github.com/mikeyfbz/Calorie-Tracker-Project#readme",
   "devDependencies": {
     "nodemon": "^1.19.0",
     "webpack": "^4.32.2",
